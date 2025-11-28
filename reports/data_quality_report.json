@@ -1,0 +1,250 @@
+{
+  "splits": {
+    "train": {
+      "split": "train",
+      "path": "data\\processed\\train_data.npz",
+      "safe_stats": {
+        "n_samples": 6975,
+        "max_token": 21,
+        "min_token": 0,
+        "seq_len_mean": 505.8785663082437,
+        "seq_len_median": 452.0,
+        "seq_len_min": 51,
+        "seq_len_max": 1000,
+        "padding_fraction_mean": 0.49412143369175626
+      },
+      "label_stats": {
+        "n_samples": 6975,
+        "n_classes": 4537,
+        "avg_labels_per_sample": 15.860931899641576,
+        "median_labels_per_sample": 12.0,
+        "min_labels_per_sample": 1,
+        "max_labels_per_sample": 143,
+        "samples_with_zero_labels": 0,
+        "sparsity": 0.9965040925943043,
+        "top_10_label_indices": [
+          1181,
+          2675,
+          1162,
+          2880,
+          2662,
+          2022,
+          1446,
+          1455,
+          1721,
+          1456
+        ],
+        "bottom_10_label_indices": [
+          1203,
+          3519,
+          1160,
+          3506,
+          3492,
+          3481,
+          3469,
+          3468,
+          3467,
+          3465
+        ],
+        "label_counts_top10": [
+          2525,
+          2223,
+          2208,
+          2152,
+          1789,
+          1256,
+          1075,
+          856,
+          855,
+          780
+        ],
+        "label_counts_bottom10": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "corruption_checks": {
+        "nan_in_X": false,
+        "nan_in_y": false,
+        "all_zero_sequences": 0,
+        "all_zero_labels": 0
+      },
+      "has_accessions": true,
+      "n_unique_accessions": 6975
+    },
+    "val": {
+      "split": "val",
+      "path": "data\\processed\\val_data.npz",
+      "safe_stats": {
+        "n_samples": 1500,
+        "max_token": 20,
+        "min_token": 0,
+        "seq_len_mean": 503.1453333333333,
+        "seq_len_median": 451.0,
+        "seq_len_min": 51,
+        "seq_len_max": 1000,
+        "padding_fraction_mean": 0.49685466666666667
+      },
+      "label_stats": {
+        "n_samples": 1500,
+        "n_classes": 4537,
+        "avg_labels_per_sample": 14.996,
+        "median_labels_per_sample": 12.0,
+        "min_labels_per_sample": 0,
+        "max_labels_per_sample": 169,
+        "samples_with_zero_labels": 8,
+        "sparsity": 0.9966947322018955,
+        "top_10_label_indices": [
+          1181,
+          2675,
+          1162,
+          2880,
+          2662,
+          2022,
+          1446,
+          1455,
+          1721,
+          1456
+        ],
+        "bottom_10_label_indices": [
+          2268,
+          1384,
+          3713,
+          3714,
+          1378,
+          1374,
+          3716,
+          1368,
+          3709,
+          3723
+        ],
+        "label_counts_top10": [
+          532,
+          483,
+          479,
+          458,
+          384,
+          273,
+          237,
+          202,
+          195,
+          186
+        ],
+        "label_counts_bottom10": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "corruption_checks": {
+        "nan_in_X": false,
+        "nan_in_y": false,
+        "all_zero_sequences": 0,
+        "all_zero_labels": 8
+      },
+      "has_accessions": true,
+      "n_unique_accessions": 1500
+    },
+    "test": {
+      "split": "test",
+      "path": "data\\processed\\test_data.npz",
+      "safe_stats": {
+        "n_samples": 1500,
+        "max_token": 20,
+        "min_token": 0,
+        "seq_len_mean": 512.1906666666666,
+        "seq_len_median": 451.0,
+        "seq_len_min": 51,
+        "seq_len_max": 1000,
+        "padding_fraction_mean": 0.4878093333333333
+      },
+      "label_stats": {
+        "n_samples": 1500,
+        "n_classes": 4537,
+        "avg_labels_per_sample": 14.962,
+        "median_labels_per_sample": 11.0,
+        "min_labels_per_sample": 0,
+        "max_labels_per_sample": 113,
+        "samples_with_zero_labels": 7,
+        "sparsity": 0.9967022261406215,
+        "top_10_label_indices": [
+          1181,
+          1162,
+          2675,
+          2880,
+          2662,
+          2022,
+          1446,
+          1721,
+          1455,
+          1456
+        ],
+        "bottom_10_label_indices": [
+          4536,
+          2829,
+          2828,
+          2827,
+          909,
+          910,
+          2824,
+          913,
+          2817,
+          2815
+        ],
+        "label_counts_top10": [
+          539,
+          482,
+          472,
+          440,
+          368,
+          264,
+          236,
+          175,
+          166,
+          154
+        ],
+        "label_counts_bottom10": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "corruption_checks": {
+        "nan_in_X": false,
+        "nan_in_y": false,
+        "all_zero_sequences": 0,
+        "all_zero_labels": 7
+      },
+      "has_accessions": true,
+      "n_unique_accessions": 1500
+    }
+  },
+  "warnings": [],
+  "accession_overlaps": {
+    "train_vs_val": 0,
+    "train_vs_test": 0,
+    "val_vs_test": 0
+  }
+}

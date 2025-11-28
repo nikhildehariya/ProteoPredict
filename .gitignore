@@ -1,0 +1,74 @@
+# ============================
+#  ProteoPredict .gitignore
+# ============================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+build/
+dist/
+
+# ---------- Jupyter ----------
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# ---------- Data files (large) ----------
+data/raw/*
+data/processed/*
+# Allow only small metadata files
+!data/processed/preprocess_config.json
+!data/processed/go_info.json
+!data/processed/mlb.pkl
+
+# Keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# ---------- Models (HUGE files) ----------
+models/*
+# Allow readme or metadata if needed
+!models/README.md
+!models/.gitkeep
+
+# ---------- Results ----------
+results/figures/
+results/metrics/
+results/reports/
+
+# ---------- Environments ----------
+.env
+.env.local
+
+# ---------- IDEs ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---------- OS files ----------
+.DS_Store
+Thumbs.db
+*.log
+
+# ---------- Testing ----------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---------- Streamlit cache ----------
+.streamlit/
+**/.streamlit/
+
+# ---------- Temporary / Cache ----------
+*.tmp
+*.temp
+logs/
+temp/
+checkpoints/

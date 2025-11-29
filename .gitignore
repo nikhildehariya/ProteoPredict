@@ -36,6 +36,8 @@ models/*
 # Allow readme or metadata if needed
 !models/README.md
 !models/.gitkeep
+!models/weighted_run/best_model.h5
+
 
 # ---------- Results ----------
 results/figures/

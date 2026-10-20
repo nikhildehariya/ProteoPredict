@@ -1,0 +1,305 @@
+"""
+ProteoPredict - Model Training Module
+Builds and trains deep learning models for protein function prediction
+"""
+
+import os
+import argparse
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from keras.models import Sequential # Keep for consistency with original style
+from keras.layers import ( # Changed to top-level 'keras'
+    Embedding, LSTM, Bidirectional, Conv1D, MaxPooling1D,
+    Dense, Dropout, BatchNormalization, Flatten
+)
+from keras.callbacks import ( # Changed to top-level 'keras'
+    EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, TensorBoard
+)
+from sklearn.metrics import precision_score, recall_score, f1_score
+import json
+from pathlib import Path
+from sklearn.utils.class_weight import compute_class_weight # Still imported, but not used in this version.
+
+# --- DATA LOADING ---
+
+def load_data(data_dir):
+    """Load preprocessed data"""
+    print(f"\n{'='*70}")
+    print("LOADING DATA")
+    print(f"{'='*70}")
+    
+    data_dir = Path(data_dir)
+    train_data = np.load(data_dir / "train_data.npz")
+    val_data = np.load(data_dir / "val_data.npz")
+
+    X_train, y_train = train_data['X'], train_data['y']
+    X_val, y_val = val_data['X'], val_data['y']
+
+    with open(data_dir / "preprocess_config.json", 'r') as f:
+        config = json.load(f)
+
+    vocab_size = config['vocab_size']
+    max_length = config['max_length']
+
+    print(f"✓ Train: {X_train.shape}, Val: {X_val.shape}")
+    print(f"✓ Vocab size: {vocab_size}, Max length: {max_length}")
+    print(f"✓ GO classes: {y_train.shape[1]}")
+
+    max_train_idx, max_val_idx = X_train.max(), X_val.max()
+    if max_train_idx >= vocab_size or max_val_idx >= vocab_size:
+        vocab_size = int(max(max_train_idx, max_val_idx)) + 10
+        print(f"⚠️ Adjusted vocab_size to {vocab_size}")
+
+    return X_train, X_val, y_train, y_val, vocab_size, max_length
+
+
+# ----------------------- MODEL DEFINITIONS -----------------------
+
+def build_baseline_model(vocab_size, num_classes, max_length, embedding_dim=64):
+    # ADDED mask_zero=True for proper padding handling
+    model = Sequential([
+        Embedding(vocab_size, embedding_dim, input_length=max_length, mask_zero=True), 
+        Flatten(),
+        Dense(256, activation='relu'),
+        Dropout(0.5),
+        Dense(num_classes, activation='sigmoid')
+    ])
+    model.compile(optimizer='adam', loss='binary_crossentropy',
+                  metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
+    return model
+
+
+def build_lstm_model(vocab_size, num_classes, max_length, embedding_dim=128):
+    model = Sequential([
+        Embedding(vocab_size, embedding_dim, input_length=max_length, mask_zero=True),
+        Bidirectional(LSTM(128, return_sequences=True)),
+        Dropout(0.3),
+        Bidirectional(LSTM(64)),
+        Dropout(0.3),
+        Dense(512, activation='relu'),
+        BatchNormalization(),
+        Dropout(0.4),
+        Dense(num_classes, activation='sigmoid')
+    ])
+    model.compile(optimizer=keras.optimizers.Adam(0.001), loss='binary_crossentropy',
+                  metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
+    return model
+
+
+def build_cnn_model(vocab_size, num_classes, max_length, embedding_dim=128):
+    # ADDED mask_zero=True for proper padding handling
+    model = Sequential([
+        Embedding(vocab_size, embedding_dim, input_length=max_length, mask_zero=True),
+        Conv1D(128, 3, activation='relu', padding='same'),
+        MaxPooling1D(2),
+        Dropout(0.3),
+        Conv1D(256, 5, activation='relu', padding='same'),
+        MaxPooling1D(2),
+        Dropout(0.3),
+        Flatten(),
+        Dense(512, activation='relu'),
+        BatchNormalization(),
+        Dropout(0.4),
+        Dense(num_classes, activation='sigmoid')
+    ])
+    model.compile(optimizer=keras.optimizers.Adam(0.001), loss='binary_crossentropy',
+                  metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
+    return model
+
+
+def build_hybrid_model(vocab_size, num_classes, max_length, embedding_dim=128):
+    """Hybrid CNN + LSTM Model"""
+    model = Sequential([
+        Embedding(vocab_size, embedding_dim, input_length=max_length, mask_zero=True),
+        Conv1D(128, 3, activation='relu', padding='same'),
+        MaxPooling1D(2),
+        Dropout(0.3),
+        Conv1D(256, 5, activation='relu', padding='same'),
+        MaxPooling1D(2),
+        Dropout(0.3),
+        Bidirectional(LSTM(64)),
+        Dropout(0.4),
+        Dense(512, activation='relu'),
+        BatchNormalization(),
+        Dropout(0.5),
+        Dense(256, activation='relu'),
+        Dropout(0.4),
+        Dense(num_classes, activation='sigmoid')
+    ])
+    model.compile(optimizer=keras.optimizers.Adam(0.001), loss='binary_crossentropy',
+                  metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
+    return model
+
+
+# ----------------------- TRAINING AND EVALUATION -----------------------
+
+def train_model(model, X_train, y_train, X_val, y_val, output_dir, epochs=20, batch_size=32):
+    print(f"\n{'='*70}")
+    print("TRAINING MODEL")
+    print(f"{'='*70}")
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    callbacks = [
+        EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True, verbose=1),
+
+        # Save in HDF5 format (.h5) 
+        ModelCheckpoint(
+            filepath=str(output_dir / 'best_model.h5'),
+            monitor='val_loss',
+            save_best_only=True,
+            verbose=1,
+            save_weights_only=False,
+        ),
+
+        ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, min_lr=1e-6, verbose=1),
+        TensorBoard(log_dir=output_dir / 'logs', histogram_freq=1)
+    ]
+
+    model.summary()
+
+    history = model.fit(
+        X_train, y_train,
+        validation_data=(X_val, y_val),
+        epochs=epochs,
+        batch_size=batch_size,
+        callbacks=callbacks,
+        verbose=1
+    )
+
+    model.save(str(output_dir / 'final_model.h5'))
+    print(f"\n✓ Final model saved to: {output_dir / 'final_model.h5'}")
+
+    # Save history
+    with open(output_dir / 'training_history.json', 'w') as f:
+        hist = {k: [float(x) for x in v] for k, v in history.history.items()}
+        json.dump(hist, f, indent=2)
+    print("✓ Training history saved.")
+
+    return history
+
+# --- New Threshold Optimization Function ---
+
+def find_optimal_threshold(model, X_val, y_val, num_steps=50):
+    """
+    Finds the optimal per-sample prediction threshold that maximizes the Micro F1-score.
+    """
+    y_pred_proba = model.predict(X_val, verbose=0)
+    # Test thresholds from 0.01 to 0.50, which is the range where most low-prob positives occur
+    thresholds = np.linspace(0.01, 0.5, num_steps) 
+    best_f1 = 0
+    best_threshold = 0.5
+
+    for t in thresholds:
+        y_pred_bin = (y_pred_proba > t).astype(int)
+        
+        # Micro F1-Score is the key metric for multi-label GO prediction
+        f1_micro = f1_score(y_val, y_pred_bin, average='micro', zero_division=0)
+        
+        if f1_micro > best_f1:
+            best_f1 = f1_micro
+            best_threshold = t
+            
+    return best_threshold, best_f1
+
+# --- Updated Evaluation Function ---
+
+def evaluate_model(model, X_val, y_val):
+    """
+    Evaluates the model using the optimal threshold and reports all metrics.
+    Removed fixed threshold=0.5 argument.
+    """
+    y_pred_proba = model.predict(X_val, verbose=0)
+    
+    # STEP 1: Find Optimal Threshold 
+    optimal_threshold, micro_f1_optimal = find_optimal_threshold(model, X_val, y_val) 
+    
+    # STEP 2: Evaluate with Optimal Threshold
+    y_pred_bin = (y_pred_proba > optimal_threshold).astype(int)
+
+    # Calculate metrics using the optimal threshold
+    precision_w = precision_score(y_val, y_pred_bin, average='weighted', zero_division=0)
+    recall_w = recall_score(y_val, y_pred_bin, average='weighted', zero_division=0)
+    f1_weighted = f1_score(y_val, y_pred_bin, average='weighted', zero_division=0)
+    
+    print(f"\nValidation Results (using optimal threshold: {optimal_threshold:.4f}):")
+    print(f"  Precision (Weighted): {precision_w:.4f}")
+    print(f"  Recall (Weighted): {recall_w:.4f}")
+    print(f"  F1-Score (Weighted): {f1_weighted:.4f}")
+    print(f"  F1-Score (Micro): {micro_f1_optimal:.4f} (Key metric for GO prediction)")
+
+    # The returned metrics dictionary is updated to reflect the new scores
+    return {'precision': precision_w, 'recall': recall_w, 'f1_score_weighted': f1_weighted, 'f1_score_micro': micro_f1_optimal, 'threshold': optimal_threshold}
+
+
+# ----------------------- MAIN FUNCTION -----------------------
+
+def main():
+    parser = argparse.ArgumentParser(description='Train ProteoPredict model')
+    parser.add_argument('--data_dir', type=str, default='data/processed')
+    parser.add_argument('--output_dir', type=str, default='models')
+    parser.add_argument('--model_type', type=str, default='hybrid',
+                        choices=['baseline', 'cnn', 'lstm', 'hybrid'])
+    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--embedding_dim', type=int, default=128)
+    args = parser.parse_args()
+
+    print("\n" + "🧬 " * 20)
+    print("PROTEOPREDICT - MODEL TRAINING STARTED")
+    print("🧬 " * 20 + "\n")
+
+    X_train, X_val, y_train, y_val, vocab_size, max_length = load_data(args.data_dir)
+    num_classes = y_train.shape[1]
+
+    print("\n================ DEBUG INFO ================")
+    print("y_train shape:", y_train.shape)
+    print("Example label:", y_train[0])
+    print("Unique label values:", np.unique(y_train)[:20])
+
+    if y_train.ndim == 1 or y_train.shape[1] == 1:
+        unique, counts = np.unique(y_train, return_counts=True)
+        print("Class distribution:", dict(zip(unique, counts)))
+    else:
+        label_sum = y_train.sum(axis=0)
+        print("Positives per class (first 10):", label_sum[:10])
+        print("Average positives per class:", np.mean(label_sum))
+    print("============================================\n")
+
+    model_map = {
+        'baseline': build_baseline_model,
+        'cnn': build_cnn_model,
+        'lstm': build_lstm_model,
+        'hybrid': build_hybrid_model
+    }
+    # Pass embedding_dim to all model builders
+    model = model_map[args.model_type](vocab_size, num_classes, max_length, args.embedding_dim)
+
+    history = train_model(model, X_train, y_train, X_val, y_val,
+                          args.output_dir, args.epochs, args.batch_size)
+    
+    # Updated: Evaluate model without fixed threshold argument
+    metrics = evaluate_model(model, X_val, y_val) 
+
+    # Predict using the optimal threshold found during evaluation for debug printing
+    optimal_threshold = metrics['threshold']
+    preds = model.predict(X_val[:100])
+    print("\n===== DEBUG PREDICTIONS =====")
+    print(f"Unique predicted labels (using threshold {optimal_threshold:.4f}):", 
+          np.unique((preds > optimal_threshold).astype(int)))
+    print("==============================\n")
+
+
+    with open(Path(args.output_dir) / 'metrics.json', 'w') as f:
+        # Use the micro F1-score for the final success message
+        json.dump(metrics, f, indent=2) 
+    print(f"\n✓ Metrics saved to: {Path(args.output_dir) / 'metrics.json'}")
+    print(f"\n✅ TRAINING COMPLETE! Best Micro F1-Score: {metrics['f1_score_micro']:.4f}")
+
+
+if __name__ == "__main__":
+    # Ensure TensorFlow uses eager execution if required (usually default now)
+    # tf.config.run_functions_eagerly(True) 
+    main()

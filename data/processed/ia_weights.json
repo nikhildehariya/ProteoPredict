@@ -1,0 +1,452 @@
+{
+  "GO:0000166": {
+    "p_train": 0.09193627052511787,
+    "ia_weight": 3.44322204661379,
+    "name": "nucleotide binding",
+    "category": "MF"
+  },
+  "GO:0003676": {
+    "p_train": 0.20541375386116079,
+    "ia_weight": 2.2833953116588352,
+    "name": "nucleic acid binding",
+    "category": "MF"
+  },
+  "GO:0003677": {
+    "p_train": 0.12428873353926191,
+    "ia_weight": 3.008232569242806,
+    "name": "DNA binding",
+    "category": "MF"
+  },
+  "GO:0003690": {
+    "p_train": 0.0926678588847342,
+    "ia_weight": 3.4317871515515064,
+    "name": "double-stranded DNA binding",
+    "category": "MF"
+  },
+  "GO:0003723": {
+    "p_train": 0.08600227605267437,
+    "ia_weight": 3.5394813484895846,
+    "name": "RNA binding",
+    "category": "MF"
+  },
+  "GO:0005576": {
+    "p_train": 0.21898878231181923,
+    "ia_weight": 2.191071125141307,
+    "name": "extracellular region",
+    "category": "CC"
+  },
+  "GO:0005654": {
+    "p_train": 0.20134937408551454,
+    "ia_weight": 2.3122271073572476,
+    "name": "nucleoplasm",
+    "category": "CC"
+  },
+  "GO:0005694": {
+    "p_train": 0.1051861485937246,
+    "ia_weight": 3.248983358611103,
+    "name": "chromosome",
+    "category": "CC"
+  },
+  "GO:0005739": {
+    "p_train": 0.09591936270525118,
+    "ia_weight": 3.382034116354407,
+    "name": "mitochondrion",
+    "category": "CC"
+  },
+  "GO:0005783": {
+    "p_train": 0.11323362054950414,
+    "ia_weight": 3.1426257180023573,
+    "name": "endoplasmic reticulum",
+    "category": "CC"
+  },
+  "GO:0005829": {
+    "p_train": 0.2741017720695822,
+    "ia_weight": 1.867216439661528,
+    "name": "cytosol",
+    "category": "CC"
+  },
+  "GO:0005856": {
+    "p_train": 0.11794830108925378,
+    "ia_weight": 3.083773456536866,
+    "name": "cytoskeleton",
+    "category": "CC"
+  },
+  "GO:0007154": {
+    "p_train": 0.23004389530157698,
+    "ia_weight": 2.1200189228843658,
+    "name": "cell communication",
+    "category": "BP"
+  },
+  "GO:0007165": {
+    "p_train": 0.21281092505283694,
+    "ia_weight": 2.2323558786583697,
+    "name": "signal transduction",
+    "category": "BP"
+  },
+  "GO:0009058": {
+    "p_train": 0.19549666720858397,
+    "ia_weight": 2.3547840819462063,
+    "name": "biosynthetic process",
+    "category": "BP"
+  },
+  "GO:0009889": {
+    "p_train": 0.2576816777759714,
+    "ia_weight": 1.9563381355768408,
+    "name": "regulation of biosynthetic process",
+    "category": "BP"
+  },
+  "GO:0010468": {
+    "p_train": 0.24109900829133474,
+    "ia_weight": 2.05230237814898,
+    "name": "regulation of gene expression",
+    "category": "BP"
+  },
+  "GO:0010556": {
+    "p_train": 0.24703300276377824,
+    "ia_weight": 2.017224301081316,
+    "name": "regulation of macromolecule biosynthetic process",
+    "category": "BP"
+  },
+  "GO:0010646": {
+    "p_train": 0.17549991871240447,
+    "ia_weight": 2.5104577325811053,
+    "name": "regulation of cell communication",
+    "category": "BP"
+  },
+  "GO:0012505": {
+    "p_train": 0.25987644285482037,
+    "ia_weight": 1.94410223182309,
+    "name": "endomembrane system",
+    "category": "CC"
+  },
+  "GO:0016043": {
+    "p_train": 0.26914322874329377,
+    "ia_weight": 1.8935539652066111,
+    "name": "cellular component organization",
+    "category": "BP"
+  },
+  "GO:0016740": {
+    "p_train": 0.11721671272963746,
+    "ia_weight": 3.092749811362788,
+    "name": "transferase activity",
+    "category": "MF"
+  },
+  "GO:0016787": {
+    "p_train": 0.12371972037067143,
+    "ia_weight": 3.014852617100065,
+    "name": "hydrolase activity",
+    "category": "MF"
+  },
+  "GO:0017076": {
+    "p_train": 0.08462038692895464,
+    "ia_weight": 3.562850907304193,
+    "name": "purine nucleotide binding",
+    "category": "MF"
+  },
+  "GO:0019219": {
+    "p_train": 0.19476507884896765,
+    "ia_weight": 2.3601930678148246,
+    "name": "regulation of nucleobase-containing compound metabolic process",
+    "category": "BP"
+  },
+  "GO:0019538": {
+    "p_train": 0.17111038855470656,
+    "ia_weight": 2.547000742649852,
+    "name": "protein metabolic process",
+    "category": "BP"
+  },
+  "GO:0019899": {
+    "p_train": 0.11168915623475857,
+    "ia_weight": 3.1624389717855106,
+    "name": "enzyme binding",
+    "category": "MF"
+  },
+  "GO:0023051": {
+    "p_train": 0.17533734352137864,
+    "ia_weight": 2.5117947994431566,
+    "name": "regulation of signaling",
+    "category": "BP"
+  },
+  "GO:0023052": {
+    "p_train": 0.22825556820029264,
+    "ia_weight": 2.13127804029905,
+    "name": "signaling",
+    "category": "BP"
+  },
+  "GO:0030054": {
+    "p_train": 0.1225816940334905,
+    "ia_weight": 3.0281845473349462,
+    "name": "cell junction",
+    "category": "CC"
+  },
+  "GO:0031090": {
+    "p_train": 0.2110225979515526,
+    "ia_weight": 2.244530592604472,
+    "name": "organelle membrane",
+    "category": "CC"
+  },
+  "GO:0031410": {
+    "p_train": 0.14322874329377336,
+    "ia_weight": 2.803607051683197,
+    "name": "cytoplasmic vesicle",
+    "category": "CC"
+  },
+  "GO:0031981": {
+    "p_train": 0.2179320435701512,
+    "ia_weight": 2.198049756621049,
+    "name": "nuclear lumen",
+    "category": "CC"
+  },
+  "GO:0031982": {
+    "p_train": 0.2182571939522029,
+    "ia_weight": 2.1958988877308356,
+    "name": "vesicle",
+    "category": "CC"
+  },
+  "GO:0031984": {
+    "p_train": 0.08551455047959682,
+    "ia_weight": 3.547686271311308,
+    "name": "organelle subcompartment",
+    "category": "CC"
+  },
+  "GO:0032501": {
+    "p_train": 0.26613558770931556,
+    "ia_weight": 1.9097666541294571,
+    "name": "multicellular organismal process",
+    "category": "BP"
+  },
+  "GO:0032502": {
+    "p_train": 0.2399609819541538,
+    "ia_weight": 2.0591282545432144,
+    "name": "developmental process",
+    "category": "BP"
+  },
+  "GO:0036094": {
+    "p_train": 0.22801170541375387,
+    "ia_weight": 2.132820205107455,
+    "name": "small molecule binding",
+    "category": "MF"
+  },
+  "GO:0038023": {
+    "p_train": 0.08933506746870427,
+    "ia_weight": 3.4846295896543795,
+    "name": "signaling receptor activity",
+    "category": "MF"
+  },
+  "GO:0042802": {
+    "p_train": 0.1196553405950252,
+    "ia_weight": 3.0630433045465977,
+    "name": "identical protein binding",
+    "category": "MF"
+  },
+  "GO:0042995": {
+    "p_train": 0.12672736140464966,
+    "ia_weight": 2.9802000479058255,
+    "name": "cell projection",
+    "category": "CC"
+  },
+  "GO:0043167": {
+    "p_train": 0.21589985368232809,
+    "ia_weight": 2.2115658292566858,
+    "name": "ion binding",
+    "category": "MF"
+  },
+  "GO:0043168": {
+    "p_train": 0.11778572589822793,
+    "ia_weight": 3.085763381046681,
+    "name": "anion binding",
+    "category": "MF"
+  },
+  "GO:0043169": {
+    "p_train": 0.12046821655015445,
+    "ia_weight": 3.0532755282977764,
+    "name": "cation binding",
+    "category": "MF"
+  },
+  "GO:0043170": {
+    "p_train": 0.2708502682490652,
+    "ia_weight": 1.8844325752380626,
+    "name": "macromolecule metabolic process",
+    "category": "BP"
+  },
+  "GO:0043230": {
+    "p_train": 0.11266460738091368,
+    "ia_weight": 3.1498937184663967,
+    "name": "extracellular organelle",
+    "category": "CC"
+  },
+  "GO:0043565": {
+    "p_train": 0.09258657128922126,
+    "ia_weight": 3.4330532288954987,
+    "name": "sequence-specific DNA binding",
+    "category": "MF"
+  },
+  "GO:0045202": {
+    "p_train": 0.08803446594049748,
+    "ia_weight": 3.5057877329952833,
+    "name": "synapse",
+    "category": "CC"
+  },
+  "GO:0046872": {
+    "p_train": 0.11323362054950414,
+    "ia_weight": 3.1426257180023573,
+    "name": "metal ion binding",
+    "category": "MF"
+  },
+  "GO:0048519": {
+    "p_train": 0.26345309705738906,
+    "ia_weight": 1.92438195528577,
+    "name": "negative regulation of biological process",
+    "category": "BP"
+  },
+  "GO:0048523": {
+    "p_train": 0.24874004226954965,
+    "ia_weight": 2.0072893230235964,
+    "name": "negative regulation of cellular process",
+    "category": "BP"
+  },
+  "GO:0048583": {
+    "p_train": 0.20126808649000164,
+    "ia_weight": 2.3128096613893456,
+    "name": "regulation of response to stimulus",
+    "category": "BP"
+  },
+  "GO:0048856": {
+    "p_train": 0.21671272963745733,
+    "ia_weight": 2.2061441955146375,
+    "name": "anatomical structure development",
+    "category": "BP"
+  },
+  "GO:0051179": {
+    "p_train": 0.20386928954641523,
+    "ia_weight": 2.2942836278015712,
+    "name": "localization",
+    "category": "BP"
+  },
+  "GO:0051234": {
+    "p_train": 0.17281742806047798,
+    "ia_weight": 2.5326793790725057,
+    "name": "establishment of localization",
+    "category": "BP"
+  },
+  "GO:0051252": {
+    "p_train": 0.17850755974638272,
+    "ia_weight": 2.485942921598412,
+    "name": "regulation of RNA metabolic process",
+    "category": "BP"
+  },
+  "GO:0060089": {
+    "p_train": 0.08933506746870427,
+    "ia_weight": 3.4846295896543795,
+    "name": "molecular transducer activity",
+    "category": "MF"
+  },
+  "GO:0065010": {
+    "p_train": 0.11266460738091368,
+    "ia_weight": 3.1498937184663967,
+    "name": "extracellular membrane-bounded organelle",
+    "category": "CC"
+  },
+  "GO:0070062": {
+    "p_train": 0.1111201430661681,
+    "ia_weight": 3.1698077329975503,
+    "name": "extracellular exosome",
+    "category": "CC"
+  },
+  "GO:0071840": {
+    "p_train": 0.27962932856446104,
+    "ia_weight": 1.8384124110141502,
+    "name": "cellular component organization or biogenesis",
+    "category": "BP"
+  },
+  "GO:0080090": {
+    "p_train": 0.26150219476507885,
+    "ia_weight": 1.935105039950872,
+    "name": "regulation of primary metabolic process",
+    "category": "BP"
+  },
+  "GO:0097367": {
+    "p_train": 0.09648837587384165,
+    "ia_weight": 3.373501040961704,
+    "name": "carbohydrate derivative binding",
+    "category": "MF"
+  },
+  "GO:0097708": {
+    "p_train": 0.14347260608031215,
+    "ia_weight": 2.801152792445068,
+    "name": "intracellular vesicle",
+    "category": "CC"
+  },
+  "GO:0098588": {
+    "p_train": 0.1259144854495204,
+    "ia_weight": 2.989483831814042,
+    "name": "bounding membrane of organelle",
+    "category": "CC"
+  },
+  "GO:0098772": {
+    "p_train": 0.12542675987644286,
+    "ia_weight": 2.9950829140328756,
+    "name": "molecular function regulator activity",
+    "category": "MF"
+  },
+  "GO:0099080": {
+    "p_train": 0.08502682490651926,
+    "ia_weight": 3.5559381243566692,
+    "name": "supramolecular complex",
+    "category": "CC"
+  },
+  "GO:0120025": {
+    "p_train": 0.12640221102259794,
+    "ia_weight": 2.9839063955856457,
+    "name": "plasma membrane bounded cell projection",
+    "category": "CC"
+  },
+  "GO:0140096": {
+    "p_train": 0.12233783124695172,
+    "ia_weight": 3.031057488956546,
+    "name": "catalytic activity, acting on a protein",
+    "category": "MF"
+  },
+  "GO:0140110": {
+    "p_train": 0.10697447569500894,
+    "ia_weight": 3.224661486868369,
+    "name": "transcription regulator activity",
+    "category": "MF"
+  },
+  "GO:0160108": {
+    "p_train": 0.18159648837587383,
+    "ia_weight": 2.4611917901202958,
+    "name": "animal gross anatomical part developmental process",
+    "category": "BP"
+  },
+  "GO:1901265": {
+    "p_train": 0.09274914648024711,
+    "ia_weight": 3.430522184314929,
+    "name": "nucleoside phosphate binding",
+    "category": "MF"
+  },
+  "GO:1901363": {
+    "p_train": 0.09982116728987156,
+    "ia_weight": 3.3245104152334313,
+    "name": "heterocyclic compound binding",
+    "category": "MF"
+  },
+  "GO:1902494": {
+    "p_train": 0.10526743618923752,
+    "ia_weight": 3.2478688780296943,
+    "name": "catalytic complex",
+    "category": "CC"
+  },
+  "GO:1903561": {
+    "p_train": 0.11266460738091368,
+    "ia_weight": 3.1498937184663967,
+    "name": "extracellular vesicle",
+    "category": "CC"
+  },
+  "GO:1990837": {
+    "p_train": 0.08697772719882946,
+    "ia_weight": 3.523210179315101,
+    "name": "sequence-specific double-stranded DNA binding",
+    "category": "MF"
+  }
+}

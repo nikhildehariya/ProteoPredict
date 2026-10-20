@@ -1,0 +1,689 @@
+{
+  "classes": [
+    "GO:0000166",
+    "GO:0003676",
+    "GO:0003677",
+    "GO:0003690",
+    "GO:0003723",
+    "GO:0005576",
+    "GO:0005654",
+    "GO:0005694",
+    "GO:0005739",
+    "GO:0005783",
+    "GO:0005829",
+    "GO:0005856",
+    "GO:0007154",
+    "GO:0007165",
+    "GO:0009058",
+    "GO:0009889",
+    "GO:0010468",
+    "GO:0010556",
+    "GO:0010646",
+    "GO:0012505",
+    "GO:0016043",
+    "GO:0016740",
+    "GO:0016787",
+    "GO:0017076",
+    "GO:0019219",
+    "GO:0019538",
+    "GO:0019899",
+    "GO:0023051",
+    "GO:0023052",
+    "GO:0030054",
+    "GO:0031090",
+    "GO:0031410",
+    "GO:0031981",
+    "GO:0031982",
+    "GO:0031984",
+    "GO:0032501",
+    "GO:0032502",
+    "GO:0036094",
+    "GO:0038023",
+    "GO:0042802",
+    "GO:0042995",
+    "GO:0043167",
+    "GO:0043168",
+    "GO:0043169",
+    "GO:0043170",
+    "GO:0043230",
+    "GO:0043565",
+    "GO:0045202",
+    "GO:0046872",
+    "GO:0048519",
+    "GO:0048523",
+    "GO:0048583",
+    "GO:0048856",
+    "GO:0051179",
+    "GO:0051234",
+    "GO:0051252",
+    "GO:0060089",
+    "GO:0065010",
+    "GO:0070062",
+    "GO:0071840",
+    "GO:0080090",
+    "GO:0097367",
+    "GO:0097708",
+    "GO:0098588",
+    "GO:0098772",
+    "GO:0099080",
+    "GO:0120025",
+    "GO:0140096",
+    "GO:0140110",
+    "GO:0160108",
+    "GO:1901265",
+    "GO:1901363",
+    "GO:1902494",
+    "GO:1903561",
+    "GO:1990837"
+  ],
+  "num_classes": 75,
+  "term_metadata": {
+    "GO:0000166": {
+      "name": "nucleotide binding",
+      "category": "MF",
+      "frequency": 1595
+    },
+    "GO:0003676": {
+      "name": "nucleic acid binding",
+      "category": "MF",
+      "frequency": 3572
+    },
+    "GO:0003677": {
+      "name": "DNA binding",
+      "category": "MF",
+      "frequency": 2151
+    },
+    "GO:0003690": {
+      "name": "double-stranded DNA binding",
+      "category": "MF",
+      "frequency": 1604
+    },
+    "GO:0003723": {
+      "name": "RNA binding",
+      "category": "MF",
+      "frequency": 1495
+    },
+    "GO:0005576": {
+      "name": "extracellular region",
+      "category": "CC",
+      "frequency": 3928
+    },
+    "GO:0005654": {
+      "name": "nucleoplasm",
+      "category": "CC",
+      "frequency": 3581
+    },
+    "GO:0005694": {
+      "name": "chromosome",
+      "category": "CC",
+      "frequency": 1865
+    },
+    "GO:0005739": {
+      "name": "mitochondrion",
+      "category": "CC",
+      "frequency": 1704
+    },
+    "GO:0005783": {
+      "name": "endoplasmic reticulum",
+      "category": "CC",
+      "frequency": 1997
+    },
+    "GO:0005829": {
+      "name": "cytosol",
+      "category": "CC",
+      "frequency": 4785
+    },
+    "GO:0005856": {
+      "name": "cytoskeleton",
+      "category": "CC",
+      "frequency": 2036
+    },
+    "GO:0007154": {
+      "name": "cell communication",
+      "category": "BP",
+      "frequency": 4050
+    },
+    "GO:0007165": {
+      "name": "signal transduction",
+      "category": "BP",
+      "frequency": 3733
+    },
+    "GO:0009058": {
+      "name": "biosynthetic process",
+      "category": "BP",
+      "frequency": 3441
+    },
+    "GO:0009889": {
+      "name": "regulation of biosynthetic process",
+      "category": "BP",
+      "frequency": 4584
+    },
+    "GO:0010468": {
+      "name": "regulation of gene expression",
+      "category": "BP",
+      "frequency": 4294
+    },
+    "GO:0010556": {
+      "name": "regulation of macromolecule biosynthetic process",
+      "category": "BP",
+      "frequency": 4403
+    },
+    "GO:0010646": {
+      "name": "regulation of cell communication",
+      "category": "BP",
+      "frequency": 3156
+    },
+    "GO:0012505": {
+      "name": "endomembrane system",
+      "category": "CC",
+      "frequency": 4515
+    },
+    "GO:0016043": {
+      "name": "cellular component organization",
+      "category": "BP",
+      "frequency": 4653
+    },
+    "GO:0016740": {
+      "name": "transferase activity",
+      "category": "MF",
+      "frequency": 2050
+    },
+    "GO:0016787": {
+      "name": "hydrolase activity",
+      "category": "MF",
+      "frequency": 2169
+    },
+    "GO:0017076": {
+      "name": "purine nucleotide binding",
+      "category": "MF",
+      "frequency": 1472
+    },
+    "GO:0019219": {
+      "name": "regulation of nucleobase-containing compound metabolic process",
+      "category": "BP",
+      "frequency": 3480
+    },
+    "GO:0019538": {
+      "name": "protein metabolic process",
+      "category": "BP",
+      "frequency": 3007
+    },
+    "GO:0019899": {
+      "name": "enzyme binding",
+      "category": "MF",
+      "frequency": 1959
+    },
+    "GO:0023051": {
+      "name": "regulation of signaling",
+      "category": "BP",
+      "frequency": 3150
+    },
+    "GO:0023052": {
+      "name": "signaling",
+      "category": "BP",
+      "frequency": 4019
+    },
+    "GO:0030054": {
+      "name": "cell junction",
+      "category": "CC",
+      "frequency": 2151
+    },
+    "GO:0031090": {
+      "name": "organelle membrane",
+      "category": "CC",
+      "frequency": 3710
+    },
+    "GO:0031410": {
+      "name": "cytoplasmic vesicle",
+      "category": "CC",
+      "frequency": 2453
+    },
+    "GO:0031981": {
+      "name": "nuclear lumen",
+      "category": "CC",
+      "frequency": 3887
+    },
+    "GO:0031982": {
+      "name": "vesicle",
+      "category": "CC",
+      "frequency": 3803
+    },
+    "GO:0031984": {
+      "name": "organelle subcompartment",
+      "category": "CC",
+      "frequency": 1542
+    },
+    "GO:0032501": {
+      "name": "multicellular organismal process",
+      "category": "BP",
+      "frequency": 4690
+    },
+    "GO:0032502": {
+      "name": "developmental process",
+      "category": "BP",
+      "frequency": 4189
+    },
+    "GO:0036094": {
+      "name": "small molecule binding",
+      "category": "MF",
+      "frequency": 3982
+    },
+    "GO:0038023": {
+      "name": "signaling receptor activity",
+      "category": "MF",
+      "frequency": 1558
+    },
+    "GO:0042802": {
+      "name": "identical protein binding",
+      "category": "MF",
+      "frequency": 2127
+    },
+    "GO:0042995": {
+      "name": "cell projection",
+      "category": "CC",
+      "frequency": 2177
+    },
+    "GO:0043167": {
+      "name": "ion binding",
+      "category": "MF",
+      "frequency": 3762
+    },
+    "GO:0043168": {
+      "name": "anion binding",
+      "category": "MF",
+      "frequency": 2042
+    },
+    "GO:0043169": {
+      "name": "cation binding",
+      "category": "MF",
+      "frequency": 2102
+    },
+    "GO:0043170": {
+      "name": "macromolecule metabolic process",
+      "category": "BP",
+      "frequency": 4762
+    },
+    "GO:0043230": {
+      "name": "extracellular organelle",
+      "category": "CC",
+      "frequency": 1979
+    },
+    "GO:0043565": {
+      "name": "sequence-specific DNA binding",
+      "category": "MF",
+      "frequency": 1619
+    },
+    "GO:0045202": {
+      "name": "synapse",
+      "category": "CC",
+      "frequency": 1555
+    },
+    "GO:0046872": {
+      "name": "metal ion binding",
+      "category": "MF",
+      "frequency": 1983
+    },
+    "GO:0048519": {
+      "name": "negative regulation of biological process",
+      "category": "BP",
+      "frequency": 4681
+    },
+    "GO:0048523": {
+      "name": "negative regulation of cellular process",
+      "category": "BP",
+      "frequency": 4422
+    },
+    "GO:0048583": {
+      "name": "regulation of response to stimulus",
+      "category": "BP",
+      "frequency": 3641
+    },
+    "GO:0048856": {
+      "name": "anatomical structure development",
+      "category": "BP",
+      "frequency": 3775
+    },
+    "GO:0051179": {
+      "name": "localization",
+      "category": "BP",
+      "frequency": 3575
+    },
+    "GO:0051234": {
+      "name": "establishment of localization",
+      "category": "BP",
+      "frequency": 3039
+    },
+    "GO:0051252": {
+      "name": "regulation of RNA metabolic process",
+      "category": "BP",
+      "frequency": 3185
+    },
+    "GO:0060089": {
+      "name": "molecular transducer activity",
+      "category": "MF",
+      "frequency": 1558
+    },
+    "GO:0065010": {
+      "name": "extracellular membrane-bounded organelle",
+      "category": "CC",
+      "frequency": 1979
+    },
+    "GO:0070062": {
+      "name": "extracellular exosome",
+      "category": "CC",
+      "frequency": 1950
+    },
+    "GO:0071840": {
+      "name": "cellular component organization or biogenesis",
+      "category": "BP",
+      "frequency": 4847
+    },
+    "GO:0080090": {
+      "name": "regulation of primary metabolic process",
+      "category": "BP",
+      "frequency": 4619
+    },
+    "GO:0097367": {
+      "name": "carbohydrate derivative binding",
+      "category": "MF",
+      "frequency": 1671
+    },
+    "GO:0097708": {
+      "name": "intracellular vesicle",
+      "category": "CC",
+      "frequency": 2459
+    },
+    "GO:0098588": {
+      "name": "bounding membrane of organelle",
+      "category": "CC",
+      "frequency": 2203
+    },
+    "GO:0098772": {
+      "name": "molecular function regulator activity",
+      "category": "MF",
+      "frequency": 2234
+    },
+    "GO:0099080": {
+      "name": "supramolecular complex",
+      "category": "CC",
+      "frequency": 1470
+    },
+    "GO:0120025": {
+      "name": "plasma membrane bounded cell projection",
+      "category": "CC",
+      "frequency": 2172
+    },
+    "GO:0140096": {
+      "name": "catalytic activity, acting on a protein",
+      "category": "MF",
+      "frequency": 2149
+    },
+    "GO:0140110": {
+      "name": "transcription regulator activity",
+      "category": "MF",
+      "frequency": 1894
+    },
+    "GO:0160108": {
+      "name": "animal gross anatomical part developmental process",
+      "category": "BP",
+      "frequency": 3174
+    },
+    "GO:1901265": {
+      "name": "nucleoside phosphate binding",
+      "category": "MF",
+      "frequency": 1614
+    },
+    "GO:1901363": {
+      "name": "heterocyclic compound binding",
+      "category": "MF",
+      "frequency": 1734
+    },
+    "GO:1902494": {
+      "name": "catalytic complex",
+      "category": "CC",
+      "frequency": 1819
+    },
+    "GO:1903561": {
+      "name": "extracellular vesicle",
+      "category": "CC",
+      "frequency": 1979
+    },
+    "GO:1990837": {
+      "name": "sequence-specific double-stranded DNA binding",
+      "category": "MF",
+      "frequency": 1515
+    }
+  },
+  "train_class_counts": {
+    "GO:0000166": 1131,
+    "GO:0003676": 2527,
+    "GO:0003677": 1529,
+    "GO:0003690": 1140,
+    "GO:0003723": 1058,
+    "GO:0005576": 2694,
+    "GO:0005654": 2477,
+    "GO:0005694": 1294,
+    "GO:0005739": 1180,
+    "GO:0005783": 1393,
+    "GO:0005829": 3372,
+    "GO:0005856": 1451,
+    "GO:0007154": 2830,
+    "GO:0007165": 2618,
+    "GO:0009058": 2405,
+    "GO:0009889": 3170,
+    "GO:0010468": 2966,
+    "GO:0010556": 3039,
+    "GO:0010646": 2159,
+    "GO:0012505": 3197,
+    "GO:0016043": 3311,
+    "GO:0016740": 1442,
+    "GO:0016787": 1522,
+    "GO:0017076": 1041,
+    "GO:0019219": 2396,
+    "GO:0019538": 2105,
+    "GO:0019899": 1374,
+    "GO:0023051": 2157,
+    "GO:0023052": 2808,
+    "GO:0030054": 1508,
+    "GO:0031090": 2596,
+    "GO:0031410": 1762,
+    "GO:0031981": 2681,
+    "GO:0031982": 2685,
+    "GO:0031984": 1052,
+    "GO:0032501": 3274,
+    "GO:0032502": 2952,
+    "GO:0036094": 2805,
+    "GO:0038023": 1099,
+    "GO:0042802": 1472,
+    "GO:0042995": 1559,
+    "GO:0043167": 2656,
+    "GO:0043168": 1449,
+    "GO:0043169": 1482,
+    "GO:0043170": 3332,
+    "GO:0043230": 1386,
+    "GO:0043565": 1139,
+    "GO:0045202": 1083,
+    "GO:0046872": 1393,
+    "GO:0048519": 3241,
+    "GO:0048523": 3060,
+    "GO:0048583": 2476,
+    "GO:0048856": 2666,
+    "GO:0051179": 2508,
+    "GO:0051234": 2126,
+    "GO:0051252": 2196,
+    "GO:0060089": 1099,
+    "GO:0065010": 1386,
+    "GO:0070062": 1367,
+    "GO:0071840": 3440,
+    "GO:0080090": 3217,
+    "GO:0097367": 1187,
+    "GO:0097708": 1765,
+    "GO:0098588": 1549,
+    "GO:0098772": 1543,
+    "GO:0099080": 1046,
+    "GO:0120025": 1555,
+    "GO:0140096": 1505,
+    "GO:0140110": 1316,
+    "GO:0160108": 2234,
+    "GO:1901265": 1141,
+    "GO:1901363": 1228,
+    "GO:1902494": 1295,
+    "GO:1903561": 1386,
+    "GO:1990837": 1070
+  },
+  "val_class_counts": {
+    "GO:0000166": 247,
+    "GO:0003676": 530,
+    "GO:0003677": 319,
+    "GO:0003690": 248,
+    "GO:0003723": 225,
+    "GO:0005576": 614,
+    "GO:0005654": 522,
+    "GO:0005694": 262,
+    "GO:0005739": 274,
+    "GO:0005783": 296,
+    "GO:0005829": 707,
+    "GO:0005856": 285,
+    "GO:0007154": 647,
+    "GO:0007165": 589,
+    "GO:0009058": 504,
+    "GO:0009889": 756,
+    "GO:0010468": 711,
+    "GO:0010556": 725,
+    "GO:0010646": 500,
+    "GO:0012505": 661,
+    "GO:0016043": 675,
+    "GO:0016740": 297,
+    "GO:0016787": 324,
+    "GO:0017076": 229,
+    "GO:0019219": 582,
+    "GO:0019538": 459,
+    "GO:0019899": 308,
+    "GO:0023051": 498,
+    "GO:0023052": 642,
+    "GO:0030054": 328,
+    "GO:0031090": 570,
+    "GO:0031410": 323,
+    "GO:0031981": 571,
+    "GO:0031982": 544,
+    "GO:0031984": 259,
+    "GO:0032501": 719,
+    "GO:0032502": 627,
+    "GO:0036094": 599,
+    "GO:0038023": 266,
+    "GO:0042802": 344,
+    "GO:0042995": 314,
+    "GO:0043167": 562,
+    "GO:0043168": 319,
+    "GO:0043169": 304,
+    "GO:0043170": 714,
+    "GO:0043230": 301,
+    "GO:0043565": 255,
+    "GO:0045202": 242,
+    "GO:0046872": 292,
+    "GO:0048519": 730,
+    "GO:0048523": 685,
+    "GO:0048583": 590,
+    "GO:0048856": 560,
+    "GO:0051179": 538,
+    "GO:0051234": 458,
+    "GO:0051252": 533,
+    "GO:0060089": 266,
+    "GO:0065010": 301,
+    "GO:0070062": 295,
+    "GO:0071840": 707,
+    "GO:0080090": 736,
+    "GO:0097367": 253,
+    "GO:0097708": 323,
+    "GO:0098588": 326,
+    "GO:0098772": 355,
+    "GO:0099080": 212,
+    "GO:0120025": 314,
+    "GO:0140096": 319,
+    "GO:0140110": 301,
+    "GO:0160108": 480,
+    "GO:1901265": 252,
+    "GO:1901363": 266,
+    "GO:1902494": 263,
+    "GO:1903561": 301,
+    "GO:1990837": 234
+  },
+  "test_class_counts": {
+    "GO:0000166": 217,
+    "GO:0003676": 515,
+    "GO:0003677": 303,
+    "GO:0003690": 216,
+    "GO:0003723": 212,
+    "GO:0005576": 620,
+    "GO:0005654": 582,
+    "GO:0005694": 309,
+    "GO:0005739": 250,
+    "GO:0005783": 308,
+    "GO:0005829": 706,
+    "GO:0005856": 300,
+    "GO:0007154": 573,
+    "GO:0007165": 526,
+    "GO:0009058": 532,
+    "GO:0009889": 658,
+    "GO:0010468": 617,
+    "GO:0010556": 639,
+    "GO:0010646": 497,
+    "GO:0012505": 657,
+    "GO:0016043": 667,
+    "GO:0016740": 311,
+    "GO:0016787": 323,
+    "GO:0017076": 202,
+    "GO:0019219": 502,
+    "GO:0019538": 443,
+    "GO:0019899": 277,
+    "GO:0023051": 495,
+    "GO:0023052": 569,
+    "GO:0030054": 315,
+    "GO:0031090": 544,
+    "GO:0031410": 368,
+    "GO:0031981": 635,
+    "GO:0031982": 574,
+    "GO:0031984": 231,
+    "GO:0032501": 697,
+    "GO:0032502": 610,
+    "GO:0036094": 578,
+    "GO:0038023": 193,
+    "GO:0042802": 311,
+    "GO:0042995": 304,
+    "GO:0043167": 544,
+    "GO:0043168": 274,
+    "GO:0043169": 316,
+    "GO:0043170": 716,
+    "GO:0043230": 292,
+    "GO:0043565": 225,
+    "GO:0045202": 230,
+    "GO:0046872": 298,
+    "GO:0048519": 710,
+    "GO:0048523": 677,
+    "GO:0048583": 575,
+    "GO:0048856": 549,
+    "GO:0051179": 529,
+    "GO:0051234": 455,
+    "GO:0051252": 456,
+    "GO:0060089": 193,
+    "GO:0065010": 292,
+    "GO:0070062": 288,
+    "GO:0071840": 700,
+    "GO:0080090": 666,
+    "GO:0097367": 231,
+    "GO:0097708": 371,
+    "GO:0098588": 328,
+    "GO:0098772": 336,
+    "GO:0099080": 212,
+    "GO:0120025": 303,
+    "GO:0140096": 325,
+    "GO:0140110": 277,
+    "GO:0160108": 460,
+    "GO:1901265": 221,
+    "GO:1901363": 240,
+    "GO:1902494": 261,
+    "GO:1903561": 292,
+    "GO:1990837": 211
+  },
+  "dag_propagation": true
+}

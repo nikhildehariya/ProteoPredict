@@ -1,0 +1,77 @@
+# ProteoPredict .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# Data files (large)
+data/raw/*.csv
+data/raw/*.tsv
+data/raw/*.fasta
+data/processed/*.npz
+data/processed/*.pkl
+!data/raw/train.csv
+!data/raw/val.csv
+!data/raw/test.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Models (large)
+models/*.h5
+models/*.keras
+models/*.pth
+models/*.pt
+models/*.pkl
+models/logs/
+models/weighted_run/
+*.tfevents.*
+
+# Whitelist SOTA Tri-Modal production artifacts (< 15MB)
+!models/trimodal_multibranch_best.h5
+!models/kmer_vectorizer_1500.pkl
+!models/biophysical_scaler.pkl
+!models/trimodal_metadata.json
+
+# Results
+results/figures/*.png
+results/figures/*.jpg
+results/metrics/*.json
+results/reports/*.pdf
+
+# Temp & Scratch
+tempCodeRunnerFile.py
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

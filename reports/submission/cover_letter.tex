@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{times}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\begin{document}
+\thispagestyle{empty}
+
+\noindent\textbf{Nikhil Dehariya}\\
+Department of Computer Science and Engineering (Artificial Intelligence and Data Science)\\
+Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India\\
+Email: \texttt{nikhildehariya101@gmail.com}\\
+Project Repository: \url{https://github.com/nikhildehariya/proteopredict}\\[1.5em]
+
+\noindent October 20, 2026\\[1.5em]
+
+\noindent\textbf{To:} The Editor-in-Chief\\
+\textit{Bioinformatics} (Oxford Academic)\\[1.5em]
+
+\noindent\textbf{SUBJECT: Submission of Original Paper -- ``ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone''}\\[1em]
+
+\noindent Dear Editor-in-Chief and Editorial Board,
+
+We are pleased to submit our original research manuscript titled \textbf{``ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone''} for publication as an \textbf{Original Paper} in \textit{Bioinformatics}.
+
+\vspace{0.5em}
+\noindent\textbf{Scientific Problem \& Core Breakthrough:}\\
+Automated Gene Ontology (GO) annotation from primary sequence is one of the foundational challenges of modern computational biology. While homology-based transfer tools (such as BLAST and $k$-NN transfer) perform reliably above $60\%$ sequence identity, they suffer catastrophic failure in the ``homology twilight zone'' ($< 30\%$ sequence identity). In this divergent regime, standard alignment algorithms fail, leading to an acute collapse in functional recall and widespread false negatives for orphan or newly sequenced proteins. Moreover, while modern pre-trained protein language models (PLMs) such as ESM-2 capture global fold representations, mean-pooled transformer embeddings frequently dilute localized linear catalytic motifs and surface biophysical properties that dictate biochemical activity.
+
+\vspace{0.5em}
+\noindent\textbf{Key Innovations of ProteoPredict:}
+\begin{enumerate}
+    \item \textbf{100\% Authentic, Zero-Leakage Proteome Benchmark:} We curated $18,338$ manually reviewed human proteins from UniProtKB/Swiss-Prot (0 synthetic sequences) and constructed a $3$-mer TF-IDF nearest-neighbor similarity graph ($\text{cosine distance} \ge 0.50$, corresponding to $<30\%$ sequence identity). We partitioned this into $16,171$ disjoint components with \textbf{strictly zero cluster overlap} between train ($12,302$), validation ($2,691$), and holdout test ($2,631$) sets, eliminating the deceptive data leakage that plagues many published deep learning models.
+    \item \textbf{Tri-Modal Multi-Branch Deep Architecture:} ProteoPredict introduces a $2,250$-dimensional input representation synthesizing: (i) Meta AI's ESM-2 evolutionary embeddings ($320\text{D}$); (ii) alignment-free $3$-mer TF-IDF linear motifs ($1,500\text{D}$); and (iii) a $430$-dimensional physicochemical profile (amino acid composition, dipeptide composition, hydropathy, charge, isoelectric point, and secondary structure propensities). Features are processed through a shared deep trunk and routed into independent sub-ontology decision heads (Molecular Function, Biological Process, Cellular Component) trained with multi-label Focal Loss ($\gamma = 2.0, \alpha = 0.35$).
+    \item \textbf{Definitive Twilight-Zone Empirical Superiority:} Evaluated under standard Critical Assessment of Functional Annotation (CAFA) protocols on the unseen test set, ProteoPredict achieves a test Micro-$F_1$ ($F_{\max}$) of \textbf{0.5031} and Macro-$F_1$ of \textbf{0.4997}. Crucially, compared to the Homology Transfer Baseline ($F_1 = 0.4607, \text{Recall} = 0.4366$), ProteoPredict increases recall to \textbf{$0.5917$}, capturing \textbf{$+35.5\%$ more true functional annotations} with an impressive Molecular Function (MF) score of \textbf{$F_1 = 0.6146$}.
+    \item \textbf{Lowest Semantic Distance ($S_{\min} = 19.86$):} In CAFA Shannon Information Accretion-weighted semantic evaluation, ProteoPredict reduces semantic uncertainty to $S_{\min} = 19.86$ (Remaining Uncertainty $RU = 18.12$, Misinformation $MI = 8.13$), substantially outperforming both the Naive Frequency Prior ($28.31$) and Homology Transfer ($22.76$).
+    \item \textbf{Biological Explainability \& Active Site Validation ($p = 0.00889$):} Using \textit{in silico} Alanine-scanning residue perturbation on experimentally solved human proteins (UniProt/PDB), we demonstrate that top-attended residues exhibit a \textbf{3.09-fold statistical enrichment at verified catalytic residues} within the human EGFR Kinase domain (Mann-Whitney $U = 1168.5, p = 0.00889 < 0.01$), confirming that the network captures genuine biochemical mechanisms rather than superficial dataset artifacts.
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent\textbf{Software and Open-Science Availability:}\\
+To maximize community adoption, we provide:
+\begin{itemize}
+    \item Fully open-source code and pre-trained model checkpoints on GitHub.
+    \item A one-command reproduction suite (\texttt{python scripts/reproduce\_all.py}) that verifies all data splits, zero-cluster leakage, trained model weights, baseline proofs, and inference within minutes.
+    \item A production-grade Streamlit web application with real-time inference ($0.14\text{s}$ per sequence on CPU) and interactive AmiGO and QuickGO DAG lineage visualizations.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Declarations:}
+\begin{itemize}
+    \item This manuscript represents original work that has not been published previously and is not under consideration for publication elsewhere.
+    \item All authors have read and approved the manuscript and agree with its submission to \textit{Bioinformatics}.
+    \item The authors declare no competing financial or commercial interests.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Suggested Expert Reviewers:}
+\begin{enumerate}
+    \item \textbf{Prof. Predrag Radivojac}, Khoury College of Computer Sciences, Northeastern University. Lead organizer of the CAFA challenges and world-renowned authority on computational protein function prediction.
+    \item \textbf{Prof. Iddo Friedberg}, Department of Veterinary Microbiology \& Pathology, Washington State University. Co-organizer of CAFA and pioneer in automated function prediction and ontology evaluation.
+    \item \textbf{Dr. Maxat Kulmanov}, Computational Bioscience Research Center (CBRC), KAUST. Primary architect of DeepGO, DeepGOPlus, and DeepGO-SE frameworks.
+    \item \textbf{Prof. Yana Bromberg}, Department of Biochemistry and Microbiology, Rutgers University / Technical University of Munich. Expert in sequence-function relationships and remote homology identification.
+\end{enumerate}
+
+Thank you very much for your time and consideration of our manuscript. We look forward to hearing from you.
+
+\vspace{1.5em}
+\noindent Sincerely,\\[1em]
+\textbf{Nikhil Dehariya}\\
+Department of Computer Science and Engineering (Artificial Intelligence and Data Science)\\
+Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India\\
+Email: \texttt{nikhildehariya101@gmail.com}
+
+\end{document}

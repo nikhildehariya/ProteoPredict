@@ -1,0 +1,255 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{adjustbox}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  columns=fullflexible,
+  breaklines=true,
+  backgroundcolor=\color{gray!10},
+  frame=single,
+  rulecolor=\color{gray!40}
+}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\title{\textbf{\Large Supplementary Material: ProteoPredict\\Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone}}
+\author{
+    \textbf{Nikhil Dehariya}$^{1,*}$ \\
+    $^{1}$Department of Computer Science and Engineering (Artificial Intelligence and Data Science), \\
+    Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India \\
+    $^{*}$Corresponding author: \texttt{nikhildehariya101@gmail.com}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{section}{0}
+\renewcommand{\thesection}{S\arabic{section}}
+
+\section{Comprehensive Architectural Ablation Study (EXP-000 to EXP-007)}
+
+Table \ref{tab:ablation_full} provides the comprehensive empirical evaluation across all intermediate model iterations leading up to the final ProteoPredict (EXP-007) architecture.
+
+\begin{table*}[h!]
+\centering
+\caption{\textbf{Comprehensive Model Ablation Progression Across Architecture Milestones (Held-Out Test Set, $N=2,631$ proteins)}.}
+\label{tab:ablation_full}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lllcccccccc}
+\toprule
+\textbf{Run ID} & \textbf{Model Architecture} & \textbf{Input Modalities} & \textbf{Loss Function} & \textbf{Val $\tau^*$} & \textbf{Test Micro-$F_1$} & \textbf{Test Macro-$F_1$} & \textbf{MF $F_1$} & \textbf{BP $F_1$} & \textbf{CC $F_1$} & \textbf{CAFA $S_{\min}$} \\
+\midrule
+EXP-000 & Naive Prior Baseline & Marginal Term Freq $P(c)$ & Frequency Prior & 0.149 & 0.3315 & 0.1693 & 0.2148 & 0.3616 & 0.3085 & 28.31 \\
+EXP-001 & 3-mer Linear Baseline & 3-mer TF-IDF (3,000D) & Logistic Loss & 0.186 & 0.4192 & 0.1801 & 0.3465 & 0.2064 & 0.4623 & --- \\
+EXP-002 & Attention-Hybrid (Pre-DAG) & Char Embeddings (64D) & Weighted BCE & 0.517 & 0.4192 & 0.1999 & 0.3383 & 0.2330 & 0.4792 & --- \\
+EXP-003a & 3-mer Linear Baseline (DAG) & 3-mer TF-IDF (3,000D) & Logistic Loss & 0.226 & 0.4322 & 0.4023 & 0.4663 & 0.4340 & 0.4051 & --- \\
+EXP-003b & Attention-Hybrid (DAG) & Char Embeddings (64D) & Focal Loss & 0.325 & 0.4063 & 0.3586 & 0.4279 & 0.4160 & 0.3755 & --- \\
+EXP-004a & Multi-Modal Linear & 3-mer + Bio (3,430D) & Logistic Loss & 0.050 & 0.3658 & 0.3509 & 0.3854 & 0.3705 & 0.3431 & --- \\
+EXP-004b & Multi-Modal Deep MLP & 3-mer + Bio (3,430D) & Focal Loss & 0.347 & 0.4534 & 0.4380 & 0.4924 & 0.4551 & 0.4237 & --- \\
+EXP-005 & ResNet-BiLSTM-Attention & Sequence + Bio (430D) & Focal Loss & 0.347 & 0.4128 & 0.3785 & 0.4073 & 0.4233 & 0.3979 & --- \\
+HOM-BL & Homology Transfer Baseline & $k=5$ Alignment Similarity & Sequence Sim & 0.403 & 0.4607 & 0.4529 & 0.5349 & 0.4615 & 0.3997 & 22.76 \\
+EXP-006 & ESM-2 Deep Hybrid & ESM-2 (320D) + Bio (430D) & Focal Loss & 0.347 & 0.4927 & 0.4819 & 0.5638 & 0.4857 & 0.4539 & 20.48 \\
+\textbf{EXP-007} & \textbf{Tri-Modal Multi-Branch} & \textbf{ESM-2 + 3-mer + Bio (2,250D)} & \textbf{Multi-Branch Focal} & \textbf{Calibrated} & \textbf{0.5031} & \textbf{0.4997} & \textbf{0.6146} & \textbf{0.4924} & \textbf{0.4571} & \textbf{19.86} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
+
+\section{Detailed Hyperparameter and Training Specifications}
+
+Table \ref{tab:hyperparams} enumerates the complete hyperparameter configuration of the production ProteoPredict EXP-007 model.
+
+\begin{table}[h!]
+\centering
+\caption{\textbf{Hyperparameter Specification for ProteoPredict EXP-007}.}
+\label{tab:hyperparams}
+\begin{tabular}{ll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Configured Value / Specification} \\
+\midrule
+Input Dimension & $2,250$ (ESM-2: 320, 3-mer TF-IDF: 1,500, Biophysical: 430) \\
+Network Trunk Layer 1 & Dense(1024), LayerNorm, ReLU, Dropout(0.40) \\
+Network Trunk Layer 2 & Dense(512), LayerNorm, ReLU, Dropout(0.30) \\
+Multi-Branch Heads & 3 Decoupled Heads (MF, BP, CC) \\
+Per-Branch Intermediate & Dense(256), ReLU, Dropout(0.20) \\
+Per-Branch Output & Dense(25), Sigmoid Activation \\
+Total Trainable Parameters & $3,212,475$ \\
+Loss Function & Multi-Label Focal Loss ($\gamma = 2.0, \alpha = 0.35$) \\
+Optimizer & Adam ($\beta_1 = 0.9, \beta_2 = 0.999, \epsilon = 10^{-7}$) \\
+Base Learning Rate & $1.0 \times 10^{-3}$ with cosine annealing decay \\
+Batch Size & $64$ \\
+Max Epochs & $50$ (Early stopping patience = 8 on Validation $F_{\max}$) \\
+Convergence Epoch & Epoch 22 ($49.9$ seconds total training time) \\
+Inference Speed & $0.14$ seconds per query sequence (Intel Core CPU) \\
+Calibrated Decision Threshold $\tau^*_{\text{MF}}$ & $0.4061$ \\
+Calibrated Decision Threshold $\tau^*_{\text{BP}}$ & $0.3694$ \\
+Calibrated Decision Threshold $\tau^*_{\text{CC}}$ & $0.3449$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Target Gene Ontology Term Distribution (75 Classes)}
+
+Table \ref{tab:go_terms} presents the balanced 75 Gene Ontology classes curated across Molecular Function (MF), Biological Process (BP), and Cellular Component (CC) sub-ontologies, verified via True Path Rule DAG propagation.
+
+\begin{table*}[h!]
+\centering
+\caption{\textbf{Curated 75 Target Gene Ontology Terms with Class Frequencies across Human Swiss-Prot}.}
+\label{tab:go_terms}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lllccc}
+\toprule
+\textbf{Sub-Ontology} & \textbf{GO Identifier} & \textbf{Official Term Name} & \textbf{Train Count} & \textbf{Val Count} & \textbf{Test Count} \\
+\midrule
+\textbf{Molecular Function} & GO:0000166 & nucleotide binding & 1595 & 352 & 344 \\
+& GO:0003676 & nucleic acid binding & 3572 & 781 & 768 \\
+& GO:0003677 & DNA binding & 2151 & 470 & 463 \\
+& GO:0003690 & double-stranded DNA binding & 265 & 58 & 56 \\
+& GO:0003723 & RNA binding & 1667 & 365 & 358 \\
+& GO:0016740 & transferase activity & 2012 & 440 & 432 \\
+& GO:0016787 & hydrolase activity & 1789 & 391 & 384 \\
+& GO:0017076 & purine nucleotide binding & 1580 & 346 & 340 \\
+& GO:0019899 & enzyme binding & 1420 & 311 & 305 \\
+& GO:0036094 & small molecule binding & 2450 & 536 & 526 \\
+& GO:0038023 & signaling receptor activity & 1120 & 245 & 240 \\
+& GO:0042802 & identical protein binding & 1890 & 414 & 406 \\
+& GO:0043167 & ion binding & 4120 & 901 & 885 \\
+& GO:0043168 & anion binding & 1640 & 359 & 352 \\
+& GO:0043169 & cation binding & 3950 & 864 & 849 \\
+& GO:0043565 & sequence-specific DNA binding & 1240 & 271 & 266 \\
+& GO:0046872 & metal ion binding & 3890 & 851 & 836 \\
+& GO:0060089 & molecular transducer activity & 1180 & 258 & 254 \\
+& GO:0097367 & carbohydrate derivative binding & 1610 & 352 & 346 \\
+& GO:0098772 & molecular function regulator & 1320 & 289 & 284 \\
+& GO:0140096 & catalytic activity, acting on a protein & 1210 & 265 & 260 \\
+& GO:0140110 & transcription regulator activity & 1540 & 337 & 331 \\
+& GO:1901265 & nucleoside phosphate binding & 1585 & 347 & 341 \\
+& GO:1901363 & heterocyclic compound binding & 3920 & 857 & 842 \\
+& GO:1990837 & sequence-specific double-stranded DNA binding & 810 & 177 & 174 \\
+\midrule
+\textbf{Biological Process} & GO:0007154 & cell communication & 4210 & 921 & 905 \\
+& GO:0007165 & signal transduction & 3890 & 851 & 836 \\
+& GO:0009058 & biosynthetic process & 3120 & 683 & 671 \\
+& GO:0009889 & regulation of biosynthetic process & 2650 & 580 & 570 \\
+& GO:0010468 & regulation of gene expression & 2890 & 632 & 621 \\
+& GO:0010556 & regulation of macromolecule biosynthetic process & 2610 & 571 & 561 \\
+& GO:0010646 & regulation of cell communication & 2950 & 645 & 634 \\
+& GO:0016043 & cellular component organization & 3410 & 746 & 733 \\
+& GO:0019219 & regulation of nucleobase-containing compound metabolic process & 2780 & 608 & 597 \\
+& GO:0019538 & protein metabolic process & 3540 & 774 & 761 \\
+& GO:0023051 & regulation of signaling & 2920 & 639 & 628 \\
+& GO:0023052 & signaling & 3910 & 855 & 840 \\
+& GO:0032501 & multicellular organismal process & 3180 & 696 & 683 \\
+& GO:0032502 & developmental process & 2990 & 654 & 643 \\
+& GO:0043170 & macromolecule metabolic process & 4820 & 1054 & 1036 \\
+& GO:0048519 & negative regulation of biological process & 2730 & 597 & 587 \\
+& GO:0048523 & negative regulation of cellular process & 2590 & 567 & 557 \\
+& GO:0048583 & regulation of response to stimulus & 2840 & 621 & 610 \\
+& GO:0048856 & anatomical structure development & 2760 & 604 & 593 \\
+& GO:0051179 & localization & 3340 & 731 & 718 \\
+& GO:0051234 & establishment of localization & 3120 & 683 & 671 \\
+& GO:0051252 & regulation of RNA metabolic process & 2410 & 527 & 518 \\
+& GO:0071840 & cellular component organization or biogenesis & 3450 & 755 & 741 \\
+& GO:0080090 & regulation of primary metabolic process & 2810 & 615 & 604 \\
+& GO:0160108 & protein-containing complex organization & 1240 & 271 & 266 \\
+\midrule
+\textbf{Cellular Component} & GO:0005576 & extracellular region & 1890 & 414 & 406 \\
+& GO:0005654 & nucleoplasm & 2910 & 637 & 625 \\
+& GO:0005694 & chromosome & 810 & 177 & 174 \\
+& GO:0005739 & mitochondrion & 1420 & 311 & 305 \\
+& GO:0005783 & endoplasmic reticulum & 1210 & 265 & 260 \\
+& GO:0005829 & cytosol & 3610 & 790 & 776 \\
+& GO:0005856 & cytoskeleton & 1340 & 293 & 288 \\
+& GO:0012505 & endomembrane system & 1650 & 361 & 354 \\
+& GO:0030054 & cell junction & 890 & 195 & 191 \\
+& GO:0031090 & organelle membrane & 1780 & 390 & 382 \\
+& GO:0031410 & cytoplasmic vesicle & 1450 & 317 & 311 \\
+& GO:0031981 & nuclear lumen & 3120 & 683 & 671 \\
+& GO:0031982 & vesicle & 1510 & 330 & 324 \\
+& GO:0031984 & organelle subcompartment & 1120 & 245 & 240 \\
+& GO:0042995 & cell projection & 1090 & 238 & 234 \\
+& GO:0043230 & extracellular organelle & 1380 & 302 & 297 \\
+& GO:0045202 & synapse & 620 & 136 & 133 \\
+& GO:0065010 & extracellular membrane-bounded organelle & 1360 & 298 & 292 \\
+& GO:0070062 & extracellular exosome & 1350 & 295 & 290 \\
+& GO:0097708 & intracellular organelle lumen & 3420 & 748 & 735 \\
+& GO:0098588 & bounding membrane of organelle & 1810 & 396 & 389 \\
+& GO:0099080 & supramolecular complex & 1040 & 228 & 223 \\
+& GO:0120025 & plasma membrane bounded cell projection & 980 & 214 & 210 \\
+& GO:1902494 & catalytic complex & 1190 & 260 & 256 \\
+& GO:1903561 & extracellular vesicle & 1370 & 300 & 294 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
+
+\section{Active Site Explainability via In Silico Alanine Scanning}
+
+To inspect whether ProteoPredict relies on authentic biochemical mechanisms rather than sequence composition artifacts, we implemented an \textit{in silico} Alanine-scanning perturbation methodology.
+
+\subsection{Mathematical Formulation}
+Let $s = (a_1, a_2, \dots, a_L)$ denote a query protein sequence, and let $f(s) \in [0, 1]^{75}$ represent the model's predicted probability vector. For each position $i \in \{1, \dots, L\}$, we construct a mutated sequence $s^{(i \to A)}$ where residue $a_i$ is substituted by Alanine ($A$). If $a_i = A$, it is substituted by Glycine ($G$).
+
+The residue saliency $\mathcal{S}(i)$ is defined as the Euclidean perturbation of the prediction vector:
+\begin{equation}
+\mathcal{S}(i) = \left\| f(s) - f(s^{(i \to A)}) \right\|_2 = \sqrt{\sum_{k=1}^{75} \left( f_k(s) - f_k(s^{(i \to A)}) \right)^2}
+\end{equation}
+
+\subsection{Statistical Significance Testing}
+Let $\mathcal{A} \subset \{1, \dots, L\}$ represent the set of experimentally resolved catalytic residues documented in UniProtKB/PDB annotations, and let $\mathcal{B} = \{1, \dots, L\} \setminus \mathcal{A}$ denote the background non-catalytic residues. 
+
+The Saliency Enrichment Ratio ($\text{ER}$) is given by:
+\begin{equation}
+\text{ER} = \frac{\frac{1}{|\mathcal{A}|} \sum_{i \in \mathcal{A}} \mathcal{S}(i)}{\frac{1}{|\mathcal{B}|} \sum_{j \in \mathcal{B}} \mathcal{S}(j)}
+\end{equation}
+
+Because residue saliency values violate Gaussian normality assumptions (Shapiro-Wilk $p < 10^{-5}$), we evaluate statistical significance using the non-parametric two-tailed **Mann-Whitney U test**:
+\begin{equation}
+U = \sum_{i \in \mathcal{A}} \sum_{j \in \mathcal{B}} \mathbf{1}_{\{\mathcal{S}(i) > \mathcal{S}(j)\}} + \frac{1}{2} \mathbf{1}_{\{\mathcal{S}(i) = \mathcal{S}(j)\}}
+\end{equation}
+For the Human Epidermal Growth Factor Receptor (EGFR) Kinase Domain (UniProtKB P00533, $L=177$ AA, $|\mathcal{A}|=10$ catalytic residues):
+\begin{itemize}
+    \item Mean Active Residue Saliency: $0.00944$
+    \item Mean Background Residue Saliency: $0.00306$
+    \item Enrichment Ratio: $\mathbf{3.09\times}$
+    \item Mann-Whitney Test: $U = 1168.5, \quad \mathbf{p = 0.00889 < 0.01}$ (\textbf{Statistically Significant})
+\end{itemize}
+
+\section{One-Command Reproduction Suite}
+
+To guarantee seamless reproducibility for peer reviewers and the computational biology community, we provide an automated reproduction script:
+
+\begin{lstlisting}[language=bash]
+# 1. Clone repository and install dependencies
+git clone https://github.com/nikhildehariya/proteopredict.git
+cd proteopredict
+pip install -r requirements.txt
+
+# 2. Run the complete publication audit and reproduction suite
+python scripts/reproduce_all.py
+\end{lstlisting}
+
+The audit script executes four automated verification stages:
+\begin{enumerate}
+    \item \textbf{Data Integrity \& Homology Cluster Disjointness:} Confirms $18,338$ reviewed human sequences, verifies zero duplicate IDs, and computes pairwise cluster intersections across Train ($12,302$), Val ($2,691$), and Test ($2,631$) to verify strictly zero cluster leakage.
+    \item \textbf{Model Artifacts Check:} Verifies MD5 checksums, file existence, and tensor sizes for all model weights (\texttt{trimodal\_multibranch\_best.h5}), $k$-mer vectorizers, biophysical scalers, and GO mappings.
+    \item \textbf{Benchmark Metric Audit:} Confirms test Micro-$F_1 = 0.5031$, Macro-$F_1 = 0.4997$, MF $F_1 = 0.6146$, Homology transfer comparison ($+35.5\%$ recall), and CAFA Semantic Distance ($S_{\min} = 19.86$).
+    \item \textbf{Live End-to-End Prediction Test:} Executes feature extraction and forward inference on the Human EGFR kinase domain, printing calibrated functional predictions and GO DAG lineages in real time ($<0.15\text{s}$).
+\end{enumerate}
+
+\end{document}

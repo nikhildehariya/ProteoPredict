@@ -1,0 +1,21 @@
+{
+  "model": "Tri-Modal Multi-Branch Deep Network (EXP-007)",
+  "calibrated_thresholds": {
+    "MF": 0.4061224489795918,
+    "BP": 0.3693877551020408,
+    "CC": 0.3448979591836735
+  },
+  "validation_fmax": 0.5130605505064294,
+  "validation_f1_mf": 0.6351198871650211,
+  "validation_f1_bp": 0.5106911726637329,
+  "validation_f1_cc": 0.44504377411725654,
+  "test_micro_f1": 0.5030963519835582,
+  "test_macro_f1": 0.49970747582108316,
+  "test_precision": 0.4375455678637786,
+  "test_recall": 0.591749101434524,
+  "test_f1_mf": 0.6146436902701482,
+  "test_f1_bp": 0.4924015439846682,
+  "test_f1_cc": 0.4571162475658284,
+  "training_time_s": 49.9,
+  "kmer_features": 1500
+}

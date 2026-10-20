@@ -1,0 +1,13 @@
+{
+  "calibrated_threshold": 0.5171428571428571,
+  "precision_micro": 0.36889145163615394,
+  "recall_micro": 0.48544057668595275,
+  "f1_micro": 0.41921611991645163,
+  "f1_macro": 0.1999170315087334,
+  "f1_mf": 0.3382765531062124,
+  "f1_bp": 0.23300970873786409,
+  "f1_cc": 0.47915774009916146,
+  "model": "Deep Learning (attention_hybrid)",
+  "validation_fmax": 0.4213764252317283,
+  "training_time_s": 1316.3
+}

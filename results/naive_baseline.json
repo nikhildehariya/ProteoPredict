@@ -1,0 +1,12 @@
+{
+  "model": "Naive Marginal Frequency Baseline (CAFA Standard)",
+  "calibrated_threshold": 0.14915254237288134,
+  "validation_fmax": 0.33490447064758183,
+  "precision_micro": 0.22232719769777923,
+  "recall_micro": 0.6511975571742104,
+  "f1_micro": 0.33148214112237295,
+  "f1_macro": 0.16928618515898705,
+  "f1_mf": 0.2148012071906574,
+  "f1_bp": 0.3616255464361775,
+  "f1_cc": 0.3085497874164851
+}

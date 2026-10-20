@@ -1,0 +1,27 @@
+{
+  "baseline_dag": {
+    "calibrated_threshold": 0.22627118644067795,
+    "precision_micro": 0.36372329559037664,
+    "recall_micro": 0.5323324533223067,
+    "f1_micro": 0.4321644373289263,
+    "f1_macro": 0.4023383127762587,
+    "f1_mf": 0.466320535592294,
+    "f1_bp": 0.43395500865218223,
+    "f1_cc": 0.40507403565028766,
+    "model": "3-mer Baseline (DAG Propagated)",
+    "training_time_s": 14.8
+  },
+  "deep_attention_hybrid_dag": {
+    "calibrated_threshold": 0.32542372881355924,
+    "precision_micro": 0.3392781044916049,
+    "recall_micro": 0.5064728521899552,
+    "f1_micro": 0.4063492873639484,
+    "f1_macro": 0.3585792906573751,
+    "f1_mf": 0.4278989098116947,
+    "f1_bp": 0.4159654134177411,
+    "f1_cc": 0.375470729202328,
+    "model": "Attention-Hybrid (FOCAL + DAG)",
+    "validation_fmax": 0.41154260389457653,
+    "training_time_s": 5301.6
+  }
+}

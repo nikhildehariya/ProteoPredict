@@ -1,0 +1,26 @@
+{
+  "EXP-000_Naive": {
+    "s_min": 28.3135,
+    "optimal_tau": 0.258,
+    "remaining_uncertainty": 25.9984,
+    "misinformation": 11.2134
+  },
+  "Homology_Baseline": {
+    "s_min": 22.7626,
+    "optimal_tau": 0.417,
+    "remaining_uncertainty": 21.1359,
+    "misinformation": 8.4504
+  },
+  "EXP-006_ESM2_Hybrid": {
+    "s_min": 20.4849,
+    "optimal_tau": 0.39,
+    "remaining_uncertainty": 17.8134,
+    "misinformation": 10.1152
+  },
+  "EXP-007_TriModal_MultiBranch": {
+    "s_min": 19.8565,
+    "optimal_tau": 0.417,
+    "remaining_uncertainty": 18.1176,
+    "misinformation": 8.1261
+  }
+}

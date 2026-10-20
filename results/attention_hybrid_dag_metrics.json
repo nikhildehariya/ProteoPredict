@@ -1,0 +1,13 @@
+{
+  "calibrated_threshold": 0.32542372881355924,
+  "precision_micro": 0.3392781044916049,
+  "recall_micro": 0.5064728521899552,
+  "f1_micro": 0.4063492873639484,
+  "f1_macro": 0.3585792906573751,
+  "f1_mf": 0.4278989098116947,
+  "f1_bp": 0.4159654134177411,
+  "f1_cc": 0.375470729202328,
+  "model": "Attention-Hybrid (FOCAL + DAG)",
+  "validation_fmax": 0.41154260389457653,
+  "training_time_s": 5301.6
+}

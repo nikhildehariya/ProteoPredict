@@ -1,0 +1,28 @@
+{
+  "multimodal_linear": {
+    "calibrated_threshold": 0.05,
+    "precision_micro": 0.3185884574530863,
+    "recall_micro": 0.4293075479499984,
+    "f1_micro": 0.36575253373800876,
+    "f1_macro": 0.350906491512853,
+    "f1_mf": 0.3854305476235802,
+    "f1_bp": 0.3705363241441491,
+    "f1_cc": 0.34312628240999815,
+    "model": "Multi-Modal (3-mer + 430D Biophysical Linear)",
+    "validation_fmax": 0.37612972174211345,
+    "training_time_s": 13.1
+  },
+  "multimodal_deep_mlp": {
+    "calibrated_threshold": 0.34745762711864403,
+    "precision_micro": 0.4064028232921603,
+    "recall_micro": 0.5128025700562995,
+    "f1_micro": 0.4534447116398768,
+    "f1_macro": 0.438018520226486,
+    "f1_mf": 0.4924165136366727,
+    "f1_bp": 0.4551457194899818,
+    "f1_cc": 0.42369534555712274,
+    "model": "Multi-Modal Deep Fusion Network (MLP + Focal Loss)",
+    "validation_fmax": 0.46316138754856284,
+    "training_time_s": 40.7
+  }
+}

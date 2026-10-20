@@ -1,0 +1,12 @@
+{
+  "model": "Deep ResNet-BiLSTM-Attention Hybrid (EXP-005)",
+  "calibrated_threshold": 0.34745762711864403,
+  "validation_fmax": 0.42245995333055275,
+  "precision_micro": 0.3248139229422067,
+  "recall_micro": 0.5663348070867394,
+  "f1_micro": 0.41284563213726744,
+  "f1_macro": 0.37852558411707327,
+  "f1_mf": 0.40734621250635483,
+  "f1_bp": 0.4232540547756246,
+  "f1_cc": 0.3979352416705772
+}

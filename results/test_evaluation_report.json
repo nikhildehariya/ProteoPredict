@@ -1,0 +1,13 @@
+{
+  "model_path": "models\\best_model.h5",
+  "test_samples": 2632,
+  "num_classes": 75,
+  "validation_calibrated_threshold": 0.5171428571428571,
+  "test_precision_micro": 0.36889145163615394,
+  "test_recall_micro": 0.48544057668595275,
+  "test_f1_micro": 0.41921611991645163,
+  "test_f1_macro": 0.1999170315087334,
+  "test_f1_molecular_function": 0.3382765531062124,
+  "test_f1_biological_process": 0.23300970873786409,
+  "test_f1_cellular_component": 0.47915774009916146
+}

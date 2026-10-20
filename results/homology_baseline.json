@@ -1,0 +1,14 @@
+{
+  "model": "Homology Transfer Baseline (BLAST / k-NN)",
+  "k_neighbors": 5,
+  "average_top1_similarity": 0.2136,
+  "calibrated_threshold": 0.40254237288135586,
+  "validation_fmax": 0.4591,
+  "test_micro_f1": 0.4607,
+  "test_macro_f1": 0.4529,
+  "test_precision": 0.4877,
+  "test_recall": 0.4366,
+  "test_f1_mf": 0.5349,
+  "test_f1_bp": 0.4615,
+  "test_f1_cc": 0.3997
+}

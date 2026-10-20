@@ -1,0 +1,44 @@
+{
+  "TP53": {
+    "protein_name": "Cellular tumor antigen p53 (Homo sapiens)",
+    "uniprot_id": "P04637",
+    "target_go_term": "GO:0003677",
+    "wildtype_probability": 0.5195,
+    "sequence_length": 393,
+    "num_active_residues": 191,
+    "mean_active_saliency": 0.00792,
+    "mean_background_saliency": 0.01704,
+    "saliency_enrichment_ratio": 0.46,
+    "mann_whitney_u": 13001.0,
+    "p_value": 0.9999999953073366,
+    "statistically_significant": false
+  },
+  "Hemoglobin_HBB": {
+    "protein_name": "Hemoglobin subunit beta (Homo sapiens)",
+    "uniprot_id": "P68871",
+    "target_go_term": "GO:0005829",
+    "wildtype_probability": 0.4314,
+    "sequence_length": 147,
+    "num_active_residues": 6,
+    "mean_active_saliency": 0.00467,
+    "mean_background_saliency": 0.00833,
+    "saliency_enrichment_ratio": 0.56,
+    "mann_whitney_u": 329.5,
+    "p_value": 0.826789594228097,
+    "statistically_significant": false
+  },
+  "EGFR_Kinase": {
+    "protein_name": "Epidermal growth factor receptor (Homo sapiens, Kinase Domain)",
+    "uniprot_id": "P00533",
+    "target_go_term": "GO:0016740",
+    "wildtype_probability": 0.6784,
+    "sequence_length": 177,
+    "num_active_residues": 10,
+    "mean_active_saliency": 0.00944,
+    "mean_background_saliency": 0.00306,
+    "saliency_enrichment_ratio": 3.09,
+    "mann_whitney_u": 1168.5,
+    "p_value": 0.008892365147476546,
+    "statistically_significant": true
+  }
+}

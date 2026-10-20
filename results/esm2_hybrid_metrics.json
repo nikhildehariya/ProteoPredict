@@ -1,0 +1,13 @@
+{
+  "calibrated_threshold": 0.34745762711864403,
+  "precision_micro": 0.42288670601909883,
+  "recall_micro": 0.5901905276885397,
+  "f1_micro": 0.49272398959052527,
+  "f1_macro": 0.48193983427564596,
+  "f1_mf": 0.563770325203252,
+  "f1_bp": 0.48569754434560275,
+  "f1_cc": 0.4539180967946972,
+  "model": "ESM-2 + Biophysical Deep Hybrid (EXP-006)",
+  "validation_fmax": 0.50342167798569,
+  "training_time_s": 35.0
+}

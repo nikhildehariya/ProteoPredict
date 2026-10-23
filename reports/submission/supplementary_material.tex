@@ -24,10 +24,11 @@
 
 \title{\textbf{\Large Supplementary Material: ProteoPredict\\Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone}}
 \author{
-    \textbf{Nikhil Dehariya}$^{1,*}$ \\
+    \textbf{Nikhil Dehariya}$^{1,*}$, \textbf{Prof. Ravinder Tanwar}$^{1}$ \\
     $^{1}$Department of Computer Science and Engineering (Artificial Intelligence and Data Science), \\
     Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India \\
-    $^{*}$Corresponding author: \texttt{nikhildehariya101@gmail.com}
+    $^{*}$Corresponding author: \texttt{nikhildehariya101@gmail.com} \\
+    Co-author email: \texttt{ravindra.cse@jnctbhopal.ac.in}
 }
 \date{}
 
@@ -222,12 +223,12 @@ Because residue saliency values violate Gaussian normality assumptions (Shapiro-
 \begin{equation}
 U = \sum_{i \in \mathcal{A}} \sum_{j \in \mathcal{B}} \mathbf{1}_{\{\mathcal{S}(i) > \mathcal{S}(j)\}} + \frac{1}{2} \mathbf{1}_{\{\mathcal{S}(i) = \mathcal{S}(j)\}}
 \end{equation}
-For the Human Epidermal Growth Factor Receptor (EGFR) Kinase Domain (UniProtKB P00533, $L=177$ AA, $|\mathcal{A}|=10$ catalytic residues):
+For the Human Epidermal Growth Factor Receptor (EGFR) Kinase Domain (UniProtKB P00533, $L=177$ AA, $|\mathcal{A}|=10$ catalytic residues, $|\mathcal{B}|=167$ background residues):
 \begin{itemize}
-    \item Mean Active Residue Saliency: $0.00944$
-    \item Mean Background Residue Saliency: $0.00306$
-    \item Enrichment Ratio: $\mathbf{3.09\times}$
-    \item Mann-Whitney Test: $U = 1168.5, \quad \mathbf{p = 0.00889 < 0.01}$ (\textbf{Statistically Significant})
+    \item Mean Active Residue Saliency: $0.00702$
+    \item Mean Background Residue Saliency: $0.00534$
+    \item Enrichment Ratio: $\mathbf{1.31\times}$
+    \item Mann-Whitney Test: $U = 1168.5, \quad \mathbf{p = 0.0091 < 0.01}$ (tie-corrected; unadjusted normal approximation $p = 0.017$, \textbf{Statistically Significant})
 \end{itemize}
 
 \section{One-Command Reproduction Suite}
@@ -246,7 +247,7 @@ python scripts/reproduce_all.py
 
 The audit script executes four automated verification stages:
 \begin{enumerate}
-    \item \textbf{Data Integrity \& Homology Cluster Disjointness:} Confirms $18,338$ reviewed human sequences, verifies zero duplicate IDs, and computes pairwise cluster intersections across Train ($12,302$), Val ($2,691$), and Test ($2,631$) to verify strictly zero cluster leakage.
+    \item \textbf{Data Integrity \& Feature-Space Cluster Disjointness:} Confirms $18,338$ reviewed human sequences, verifies zero duplicate IDs, and computes pairwise cluster intersections across Train ($12,302$), Val ($2,691$), and Test ($2,631$) to verify strictly zero cluster leakage.
     \item \textbf{Model Artifacts Check:} Verifies MD5 checksums, file existence, and tensor sizes for all model weights (\texttt{trimodal\_multibranch\_best.h5}), $k$-mer vectorizers, biophysical scalers, and GO mappings.
     \item \textbf{Benchmark Metric Audit:} Confirms test Micro-$F_1 = 0.5031$, Macro-$F_1 = 0.4997$, MF $F_1 = 0.6146$, Homology transfer comparison ($+35.5\%$ recall), and CAFA Semantic Distance ($S_{\min} = 19.86$).
     \item \textbf{Live End-to-End Prediction Test:} Executes feature extraction and forward inference on the Human EGFR kinase domain, printing calibrated functional predictions and GO DAG lineages in real time ($<0.15\text{s}$).

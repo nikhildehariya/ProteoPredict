@@ -1,8 +1,8 @@
-# ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction in the Homology Twilight Zone
+# ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across Low 3-mer Feature-Space Similarity Regimes
 
-**Nikhil Dehariya$^{1,*}$**  
+**Nikhil Dehariya$^{1,*}$, Prof. Ravinder Tanwar$^{1}$**  
 $^{1}$Department of Computer Science and Engineering (Artificial Intelligence and Data Science), Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
-$^*$Corresponding Author: `nikhildehariya101@gmail.com`
+$^*$Corresponding Author: `nikhildehariya101@gmail.com` | Co-Author: `ravindra.cse@jnctbhopal.ac.in`
 
 ---
 

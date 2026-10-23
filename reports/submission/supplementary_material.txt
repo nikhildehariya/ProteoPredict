@@ -1,9 +1,9 @@
 # Supplementary Material: ProteoPredict
 ## Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone
 
-**Nikhil Dehariya$^{1,*}$**  
+**Nikhil Dehariya$^{1,*}$, Prof. Ravinder Tanwar$^{1}$**  
 $^{1}$Department of Computer Science and Engineering (Artificial Intelligence and Data Science), Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
-$^{*}$Corresponding Author: `nikhildehariya101@gmail.com`  
+$^{*}$Corresponding Author: `nikhildehariya101@gmail.com` | Co-Author: `ravindra.cse@jnctbhopal.ac.in`  
 
 ---
 
@@ -34,7 +34,7 @@ $^{*}$Corresponding Author: `nikhildehariya101@gmail.com`
 | Hyperparameter Category | Setting / Value | Architectural Rationale |
 | :--- | :--- | :--- |
 | **Input Feature Concatenation** | 2,250 dimensions | ESM-2 (320D) + 3-mer TF-IDF (1,500D) + Biophysical Profile (430D) |
-| **Shared Trunk Architecture** | Dense(1024) $\rightarrow$ LayerNorm $\rightarrow$ ReLU $\rightarrow$ Dropout(0.40)<br>Dense(512) $\rightarrow$ LayerNorm $\rightarrow$ ReLU $\rightarrow$ Dropout(0.30) | High initial capacity followed by heavy regularization to prevent overfitting on divergent homology clusters |
+| **Shared Trunk Architecture** | Dense(1024) $\rightarrow$ LayerNorm $\rightarrow$ ReLU $\rightarrow$ Dropout(0.40)<br>Dense(512) $\rightarrow$ LayerNorm $\rightarrow$ ReLU $\rightarrow$ Dropout(0.30) | High initial capacity followed by heavy regularization to prevent overfitting on divergent 3-mer feature-space clusters |
 | **Decoupled Output Heads** | 3 independent branches (MF, BP, CC) | Resolves functional interference between distinct biological ontologies |
 | **Branch Architecture** | Per-branch: Dense(256) $\rightarrow$ ReLU $\rightarrow$ Dropout(0.20) $\rightarrow$ Dense(25) $\rightarrow$ Sigmoid | Permits branch-specific non-linear transformations |
 | **Total Trainable Parameters** | 3,212,475 parameters | Compact footprint enabling sub-second CPU inference |
@@ -159,7 +159,7 @@ $$\mathcal{S}(i) = \|\Delta f^{(i)}\|_2 = \sqrt{\sum_{k=1}^{75} \left(f_k(s) - f
 4. The two-tailed Mann-Whitney U test was performed to test the null hypothesis:
    $$H_0: \mathbb{P}(\mathcal{S}_{\text{active}} > \mathcal{S}_{\text{background}}) = 0.5$$
    $$H_1: \mathbb{P}(\mathcal{S}_{\text{active}} > \mathcal{S}_{\text{background}}) \neq 0.5$$
-5. For EGFR Kinase Domain, the Mann-Whitney test yielded $U = 1168.5, p = 0.00889 < 0.01$, rejecting the null hypothesis with high confidence and proving that ProteoPredict concentrates attention on real catalytic mechanisms.
+5. For EGFR Kinase Domain (10 active, 167 background residues), the Mann-Whitney test yielded $U = 1168.5$, tie-corrected $p = 0.0091 < 0.01$ (unadjusted normal approximation $p = 0.017 < 0.05$), with active mean sensitivity of $0.00702$ vs. background mean $0.00534$ ($1.31\times$ enrichment), rejecting the null hypothesis with high confidence and indicating that ProteoPredict concentrates attention on real catalytic mechanisms.
 
 ---
 
@@ -182,7 +182,7 @@ python scripts/reproduce_all.py
 ### Expected Output Summary
 ```
 ======================================================================
-  1. AUDITING DATASET INTEGRITY & HOMOLOGY CLUSTERING
+  1. AUDITING DATASET INTEGRITY & 3-MER GRAPH PARTITIONING
 ======================================================================
 [OK] Training Set:   12,302 proteins
 [OK] Validation Set: 2,691 proteins
@@ -190,7 +190,7 @@ python scripts/reproduce_all.py
 [OK] Cluster Overlap Train-Val:  0 (STRICT ZERO LEAKAGE)
 [OK] Cluster Overlap Train-Test: 0 (STRICT ZERO LEAKAGE)
 [OK] Cluster Overlap Val-Test:   0 (STRICT ZERO LEAKAGE)
---> Rigorous < 30% sequence identity homology partition verified.
+--> Rigorous disjoint 3-mer feature-space partition verified (zero cluster overlap).
 
 ======================================================================
   2. VERIFYING MODEL ARTIFACTS & TRAINED WEIGHTS
@@ -214,8 +214,8 @@ python scripts/reproduce_all.py
   Test BP F1:         0.4924
   Test CC F1:         0.4571
 
---- Homology Transfer Baseline (Twilight Zone Sequence Matching) ---
-  Average Top-1 Similarity: 0.2136 (< 30% sequence identity)
+--- Homology Transfer Baseline (Nearest-Neighbor Sequence Transfer) ---
+  Median Top-1 3-mer Similarity: 0.306 (Mean: 0.322, 95.4% < 0.50 threshold)
   Homology Test Micro-F1:  0.4607 (ProteoPredict outperforms by +0.0424)
   Homology Test Recall:    0.4366 (ProteoPredict captures +35.5% more true functions)
 
@@ -227,9 +227,9 @@ python scripts/reproduce_all.py
 
 --- In Silico Alanine Scanning Active Site Explainability ---
   Protein Target:            Human EGFR Kinase Domain (177 AA)
-  Active Site Residues:      10 catalytic residues
-  Saliency Enrichment Ratio: 3.09x enrichment at active pocket
-  Mann-Whitney p-value:      0.00889 (Statistically Significant p < 0.01: True)
+  Active Site Residues:      10 catalytic residues (167 background residues)
+  Saliency Enrichment Ratio: 1.31x enrichment at active pocket (0.00702 vs 0.00534)
+  Mann-Whitney p-value:      0.0091 (tie-corrected, p < 0.01; normal approx p = 0.017)
 
 ======================================================================
 ALL PUBLICATION REPRODUCIBILITY AUDITS PASSED [100% VERIFIED]

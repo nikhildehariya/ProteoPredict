@@ -104,9 +104,9 @@ ProteoPredict unifies three complementary biological feature spaces (2,250 input
 To prove that ProteoPredict learns genuine catalytic mechanisms rather than statistical shortcuts, we performed *in silico* Alanine-scanning perturbation on benchmark human proteins with experimentally resolved PDB/UniProt active sites:
 
 * **Target:** Human Epidermal Growth Factor Receptor (EGFR Kinase Domain, P00533, 177 AA).
-* **Catalytic Pocket Residues:** 10 verified active residues (including ATP-binding Lys745 and catalytic Asp855).
-* **Result:** Model attention was **3.09x enriched at verified active residues** compared to background positions.
-* **Statistical Significance:** Non-parametric Mann-Whitney U test confirmed statistical significance with **$p = 0.00889 < 0.01$** ($U = 1168.5$).
+* **Catalytic Pocket Residues:** 10 verified active residues (including ATP-binding Lys745 and catalytic Asp855) vs. 167 background residues.
+* **Result:** Model functional sensitivity was **1.31-fold enriched at verified active residues** (mean 0.00702 vs. 0.00534 background).
+* **Statistical Significance:** One-sided Mann-Whitney U test yielded $U = 1168.5$ with a logged tie-corrected **$p = 0.0091 < 0.01$** (conservative unadjusted asymptotic normal approximation $p = 0.017 < 0.05$).
 
 ---
 

@@ -2,11 +2,12 @@
 
 ## 1. CRediT Author Contributions Statement
 - **Nikhil Dehariya:** Conceptualization, Methodology, Software, Validation, Formal Analysis, Investigation, Data Curation, Writing - Original Draft, Visualization, Project Administration.
+- **Prof. Ravinder Tanwar:** Supervision, Resources, Writing - Review & Editing, Mentorship, Institutional Oversight.
 
 ---
 
 ## 2. Competing Interests Statement
-The author declares that there are no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 ---
 
@@ -14,7 +15,7 @@ The author declares that there are no known competing financial interests or per
 The datasets supporting the findings of this study are available in public, open-access repositories:
 - Primary human protein sequences and annotations were retrieved from the UniProtKB/Swiss-Prot Knowledgebase (`2023_04` release; `https://www.uniprot.org/`).
 - Gene Ontology terms and hierarchical Directed Acyclic Graph (DAG) structures were obtained from the Gene Ontology Consortium (`go-basic.obo`; `http://geneontology.org/`).
-- The processed train, validation, and holdout test splits with cluster assignment labels (< 30% sequence identity disjoint partitions) are available in the project repository at `https://github.com/nikhildehariya/proteopredict/tree/main/data`.
+- The processed train, validation, and holdout test splits with cluster assignment labels (disjoint 3-mer feature-space partitions) are available in the project repository at `https://github.com/nikhildehariya/proteopredict/tree/main/data`.
 
 ---
 

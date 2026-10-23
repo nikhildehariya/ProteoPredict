@@ -100,7 +100,7 @@ def plot_figure2_sub_ontologies():
     print("Generating Figure 2: Per-Sub-Ontology Comparison...")
     runs = [
         "Naive Prior\n(EXP-000)",
-        "Homology Baseline\n(Twilight Zone)",
+        "Homology Baseline\n(Nearest-Neighbor)",
         "ESM-2 Deep Hybrid\n(EXP-006)",
         "Tri-Modal Deep Net\n(EXP-007 SOTA)"
     ]
@@ -149,7 +149,7 @@ def plot_figure3_smin():
     print("Generating Figure 3: CAFA S_min Semantic Distance...")
     methods = [
         "EXP-000\nNaive Prior",
-        "Homology Baseline\n(Twilight Zone)",
+        "Homology Baseline\n(Nearest-Neighbor)",
         "EXP-006\nESM-2 Hybrid",
         "EXP-007\nTri-Modal SOTA"
     ]
@@ -194,8 +194,8 @@ def plot_figure3_smin():
 def plot_figure4_active_site():
     print("Generating Figure 4: Biological Active Site Saliency...")
     targets = ["EGFR Kinase Domain\n(10 Active Residues)", "Beta-Hemoglobin\n(6 Active Residues)", "TP53 Core Domain\n(191 DNA Contact)"]
-    active_saliency = [0.00944, 0.00467, 0.00792]
-    background_saliency = [0.00306, 0.00833, 0.01704]
+    active_saliency = [0.00702, 0.00467, 0.00792]
+    background_saliency = [0.00534, 0.00833, 0.01704]
 
     x = np.arange(len(targets))
     width = 0.35
@@ -213,7 +213,7 @@ def plot_figure4_active_site():
     ax.grid(axis="y", linestyle=":", alpha=0.6)
 
     # Highlight statistical significance for EGFR
-    ax.annotate("3.09x Enrichment\np = 0.00889 (p < 0.01)**",
+    ax.annotate("1.31x Enrichment\np = 0.0091 (p < 0.01)**",
                 xy=(0 - width/2, active_saliency[0]),
                 xytext=(0, 30), textcoords="offset points",
                 ha="center", va="bottom", fontweight="bold", color="#004D40",

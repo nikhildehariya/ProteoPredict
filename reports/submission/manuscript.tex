@@ -170,7 +170,10 @@ Model performance was evaluated following CAFA-standard metric formulations \cit
     \end{equation}
     where Remaining Uncertainty ($RU$) and Misinformation ($MI$) are weighted by Shannon Information Accretion $IA(c) = -\log_2 P(c)$ computed over the background annotation corpus:
     \begin{equation}
-    RU(\tau) = \frac{1}{N}\sum_{i=1}^N \sum_{c \in T_i \setminus P_i(\tau)} IA(c), \quad MI(\tau) = \frac{1}{N}\sum_{i=1}^N \sum_{c \in P_i(\tau) \setminus T_i} IA(c)
+    \begin{aligned}
+    RU(\tau) &= \frac{1}{N}\sum_{i=1}^N \sum_{c \in \mathcal{T}_i \setminus \mathcal{P}_i(\tau)} IA(c), \\
+    MI(\tau) &= \frac{1}{N}\sum_{i=1}^N \sum_{c \in \mathcal{P}_i(\tau) \setminus \mathcal{T}_i} IA(c)
+    \end{aligned}
     \end{equation}
 \end{itemize}
 

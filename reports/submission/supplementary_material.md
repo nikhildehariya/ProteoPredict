@@ -1,5 +1,5 @@
 # Supplementary Material: ProteoPredict
-## Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across the Homology Twilight Zone
+## Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across Low 3-mer Feature-Space Similarity Regimes
 
 **Nikhil Dehariya$^{1,*}$, Prof. Ravinder Tanwar$^{1}$**  
 $^{1}$Department of Computer Science and Engineering (Artificial Intelligence and Data Science), Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
@@ -9,7 +9,7 @@ $^{*}$Corresponding Author: `nikhildehariya101@gmail.com` | Co-Author: `ravindra
 
 ## S1. Comprehensive Architectural Ablation Study (EXP-000 to EXP-007)
 
-**Table S1: Full Model Ablation Progression Across Architecture Milestones (Held-Out Test Set, $N=2,631$ proteins, $<30\%$ identity)**
+**Table S1: Full Model Ablation Progression Across Architecture Milestones (Held-Out Test Set, $N=2,631$ proteins, low 3-mer feature similarity)**
 
 | Run ID | Model Architecture | Input Features (Dims) | Loss Function | Val $\tau^*$ | Test Micro-$F_1$ ($F_{\max}$) | Test Macro-$F_1$ | MF $F_1$ | BP $F_1$ | CC $F_1$ | CAFA $S_{\min} \downarrow$ |
 | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -21,7 +21,7 @@ $^{*}$Corresponding Author: `nikhildehariya101@gmail.com` | Co-Author: `ravindra
 | **EXP-004a**| Multi-Modal Linear | 3-mer + Bio (3,430D) | Logistic Loss | 0.050 | 0.3658 | 0.3509 | 0.3854 | 0.3705 | 0.3431 | — |
 | **EXP-004b**| Multi-Modal Deep MLP | 3-mer + Bio (3,430D) | Focal Loss | 0.347 | 0.4534 | 0.4380 | 0.4924 | 0.4551 | 0.4237 | — |
 | **EXP-005** | ResNet-BiLSTM-Attention | Sequence + Bio (430D) | Focal Loss | 0.347 | 0.4128 | 0.3785 | 0.4073 | 0.4233 | 0.3979 | — |
-| **HOM-BL**  | Homology Transfer (Twilight) | $k=5$ Alignment Neighbors | Sequence Sim | 0.403 | 0.4607 | 0.4529 | 0.5349 | 0.4615 | 0.3997 | 22.76 |
+| **HOM-BL**  | Nearest-Neighbor Transfer (Feature Space) | $k=5$ Alignment Neighbors | Sequence Sim | 0.403 | 0.4607 | 0.4529 | 0.5349 | 0.4615 | 0.3997 | 22.76 |
 | **EXP-006** | ESM-2 Deep Hybrid | ESM-2 (320D) + Bio (430D) | Focal Loss | 0.347 | 0.4927 | 0.4819 | 0.5638 | 0.4857 | 0.4539 | 20.48 |
 | **EXP-007** | **Tri-Modal Multi-Branch (Ours)** | **ESM-2 + 3-mer + Bio (2,250D)** | **Multi-Branch Focal** | **Calibrated** | **0.5031** | **0.4997** | **0.6146** | **0.4924** | **0.4571** | **19.86** |
 

@@ -106,10 +106,11 @@ For each sequence $s = (a_1, a_2, \dots, a_L)$, three complementary feature repr
     \begin{equation}
     \mathbf{x}_{\text{ESM}} = \frac{1}{|s|} \sum_{i=1}^{|s|} \mathbf{h}_i^{(6)}
     \end{equation}
-    \item \textbf{Alignment-Free Linear Motifs ($\mathbf{x}_{\text{kmer}} \in \mathbb{R}^{1,500}$):} All amino acid $3$-mers are counted and weighted via Term Frequency-Inverse Document Frequency (TF-IDF), parameterized strictly on $\mathcal{D}_{\text{train}}$:
+    \item \textbf{Alignment-Free Linear Motifs ($\mathbf{x}_{\text{kmer}} \in \mathbb{R}^{1,500}$):} All amino acid $3$-mers are counted and weighted via Term Frequency-Inverse Document Frequency (TF-IDF) strictly parameterized on $\mathcal{D}_{\text{train}}$:
     \begin{equation}
-    \text{TF-IDF}(t, s) = \text{TF}(t, s) \cdot \log \left( \frac{1 + |\mathcal{D}_{\text{train}}|}{1 + |\{s' \in \mathcal{D}_{\text{train}} \mid t \in s'\}|} \right) + 1
+    \text{TF-IDF}(t, s) = \text{TF}(t, s) \cdot \left[\log \left( \frac{1 + |\mathcal{D}_{\text{train}}|}{1 + \text{DF}(t)} \right) + 1\right]
     \end{equation}
+    where $\text{DF}(t) = |\{s' \in \mathcal{D}_{\text{train}} \mid t \in s'\}|$ denotes the sequence frequency of $3$-mer $t$.
     \item \textbf{Biophysical Descriptor Profile ($\mathbf{x}_{\text{bio}} \in \mathbb{R}^{430}$):} Comprehensive physicochemical and conformational descriptors including:
     \begin{itemize}
         \item Amino Acid Composition (AAC, $20\text{D}$)
@@ -122,10 +123,10 @@ The unified input vector $\mathbf{z}_0 = [\mathbf{x}_{\text{ESM}} \,\|\, \mathbf
 \subsection{Multi-Branch Neural Trunk and Prediction Heads}
 The concatenated vector $\mathbf{z}_0$ passes through a shared deep trunk:
 \begin{align}
-\mathbf{z}_1 &= \text{Dropout}_{0.4}\left(\text{LN}\left(\text{ReLU}\left(\mathbf{W}_1 \mathbf{z}_0 + \mathbf{b}_1\right)\right)\right), \quad \mathbf{W}_1 \in \mathbb{R}^{1024 \times 2250} \\
-\mathbf{z}_2 &= \text{Dropout}_{0.3}\left(\text{LN}\left(\text{ReLU}\left(\mathbf{W}_2 \mathbf{z}_1 + \mathbf{b}_2\right)\right)\right), \quad \mathbf{W}_2 \in \mathbb{R}^{512 \times 1024}
+\mathbf{z}_1 &= \text{Dropout}_{0.4}\left(\text{LN}\left(\text{ReLU}\left(\mathbf{W}_1 \mathbf{z}_0 + \mathbf{b}_1\right)\right)\right) \\
+\mathbf{z}_2 &= \text{Dropout}_{0.3}\left(\text{LN}\left(\text{ReLU}\left(\mathbf{W}_2 \mathbf{z}_1 + \mathbf{b}_2\right)\right)\right)
 \end{align}
-where $\text{LN}(\cdot)$ denotes Layer Normalization.
+where $\mathbf{W}_1 \in \mathbb{R}^{1024 \times 2250}$, $\mathbf{W}_2 \in \mathbb{R}^{512 \times 1024}$, and $\text{LN}(\cdot)$ denotes Layer Normalization.
 
 Because Molecular Function, Biological Process, and Cellular Component adhere to distinct topological and biological constraints, $\mathbf{z}_2$ is routed into three decoupled sub-ontology heads:
 \begin{align}

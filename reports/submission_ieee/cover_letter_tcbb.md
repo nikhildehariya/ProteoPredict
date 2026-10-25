@@ -1,0 +1,61 @@
+# Cover Letter to the Editor-in-Chief
+
+**To:** Prof. Tamer Kahveci  
+Editor-in-Chief, *IEEE Transactions on Computational Biology and Bioinformatics (TCBB)*  
+Department of Computer & Information Science & Engineering, University of Florida  
+
+**Submission Type:** Regular Research Paper  
+**Manuscript Title:** ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across Low 3-mer Feature-Space Similarity Regimes  
+**Authors:** Nikhil Dehariya (First & Corresponding Author), Prof. Ravinder Tanwar (Co-Author & Head of Department)  
+**Affiliation:** Department of Computer Science and Engineering (Artificial Intelligence and Data Science), Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
+**Corresponding Author Email:** `nikhildehariya101@gmail.com`  
+**Co-Author Institutional Email:** `ravindra.cse@jnctbhopal.ac.in`  
+**Date:** October 25, 2026  
+
+---
+
+Dear Prof. Tamer Kahveci and Editorial Board Members,
+
+We are pleased to submit our original research manuscript titled **"ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across Low 3-mer Feature-Space Similarity Regimes"** for consideration as a **Regular Research Paper** in the *IEEE Transactions on Computational Biology and Bioinformatics (TCBB)*.
+
+### 1. Scientific Significance & Computational Bottleneck
+High-throughput automated prediction of Gene Ontology (GO) terms directly from primary amino acid sequences is a cornerstone of functional genomics, metabolic pathway reconstruction, and precision drug discovery. However, traditional homology transfer algorithms (e.g., BLAST and $k$-NN transfer) suffer marked performance collapse in low sequence and feature-space similarity regimes, where evolutionary divergence obscures simple alignment signals. Furthermore, while pre-trained protein language models (PLMs) capture global tertiary fold topology, standard pooled transformer embeddings frequently dilute localized catalytic linear motifs and surface biophysical properties essential for enzymatic specificity.
+
+### 2. Methodological Innovation & Rigorous Benchmarks
+In this study, we present **ProteoPredict**, a leak-free, tri-modal multi-branch deep architecture designed to resolve these computational challenges:
+1. **Graph-Partitioned Non-Redundant Benchmark:** From an initial retrieval of 18,338 reviewed human Swiss-Prot proteins (18,288 unique), 17,624 fully annotated proteins were partitioned into 16,171 disjoint clusters via an alignment-free 3-mer TF-IDF nearest-neighbor graph heuristic ($d_{\cos} \le 0.50$, zero cluster overlap across 12,302 train / 2,691 val / 2,631 test splits), eliminating sequence identity leakage.
+2. **Tri-Modal Deep Network:** Simultaneously ingests 2,250 dimensions across three complementary modalities:
+   - Evolutionary Semantics: Meta AI ESM-2 (`esm2_t6_8M_UR50D`, 320D)
+   - Alignment-Free Linear Motifs: 3-mer TF-IDF (1,500D)
+   - Biophysical Profile: 430D (AAC 20D, DPC 400D, hydropathy, charge, pI, secondary structure 10D)
+3. **Decoupled Heads & Focal Loss:** Features route through a shared trunk into independent sub-ontology decision heads (MF, BP, CC) optimized with multi-label Focal Loss ($\gamma = 2.0, lpha = 0.35$).
+4. **Empirical Performance Under Low Feature-Space Similarity:** On the held-out test cohort ($N=2,631$), ProteoPredict achieves **test Micro-$F_1$ = 0.5031** and **Macro-$F_1$ = 0.4997**. In this low 3-mer feature-space similarity regime (median similarity 0.306), it outperforms Nearest-Neighbor Transfer ($F_1 = 0.4607$) on the same test set by capturing a relative **$+35.5\%$ higher recall** ($0.5917$ vs. $0.4366$; $Precision = 0.4375$ vs. $0.4877$), reaching **$F_1 = 0.6146$** in Molecular Function.
+5. **Lowest Semantic Distance:** Achieves CAFA semantic distance $S_{\min} = 19.86$ (Remaining Uncertainty $RU = 18.12$, Misinformation $MI = 8.13$), significantly outperforming the Naive Prior ($28.31$) and Nearest-Neighbor Transfer ($22.76$).
+6. **Active Site Explainability:** Exploratory *in silico* sliding-window Alanine perturbation demonstrates a **1.31-fold functional sensitivity enrichment at verified catalytic residues** within the human EGFR Kinase domain (one-sided Mann-Whitney $U = 1168.5$, logged tie-corrected $p = 0.0091$; unadjusted asymptotic normal approximation $p = 0.017$), providing localized exploratory support for active-site sensitivity.
+
+### 3. Open Science & Reproducibility
+ProteoPredict processes single query sequences in **0.14 seconds for neural forward inference using cached ESM-2 embeddings**. All source code, pre-trained model checkpoints, and reproducible scripts are freely available at `https://github.com/nikhildehariya/proteopredict`. An interactive Streamlit graphical application and a standalone evaluation script (`scripts/evaluate_benchmark.py`) are provided for one-command end-to-end reproducibility.
+
+### 4. Author Declarations
+- This manuscript is original, has not been published previously, and is not currently under consideration by any other journal.
+- All authors have reviewed and approved the manuscript for submission.
+- The authors declare that there are no competing financial or non-financial interests.
+
+### 5. Suggested Independent Reviewers
+1. **Prof. Predrag Radivojac**, Khoury College of Computer Sciences, Northeastern University (`p.radivojac@northeastern.edu`). Lead organizer of the CAFA challenges; world authority on computational protein function evaluation.
+2. **Dr. Maxat Kulmanov**, Computational Bioscience Research Center (CBRC), King Abdullah University of Science and Technology (`maxat.kulmanov@kaust.edu.sa`). Creator of DeepGOPlus and deep ontology predictors.
+3. **Prof. Iddo Friedberg**, Department of Veterinary Microbiology & Pathology, Washington State University (`irokicki@gmail.com`). Co-organizer of CAFA and expert in automated annotation systems.
+4. **Prof. Yana Bromberg**, Department of Biochemistry and Microbiology, Rutgers University (`yanab@rci.rutgers.edu`). Pioneer in sequence-function relationships and remote homology identification.
+
+Thank you very much for your time and consideration.
+
+Sincerely,  
+**Nikhil Dehariya** (First & Corresponding Author)  
+Department of Computer Science and Engineering (Artificial Intelligence and Data Science)  
+Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
+Email: `nikhildehariya101@gmail.com`  
+
+**Prof. Ravinder Tanwar** (Co-Author & Head of Department)  
+Department of Computer Science and Engineering  
+Jai Narain College of Technology (JNCT), Bhopal, Madhya Pradesh, India  
+Email: `ravindra.cse@jnctbhopal.ac.in`

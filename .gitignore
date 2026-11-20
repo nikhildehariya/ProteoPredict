@@ -75,3 +75,7 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Internal Project Tracking & Confidential Submissions
+progress.md
+reports/submission_bmc/

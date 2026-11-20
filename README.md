@@ -10,6 +10,7 @@
 [![CAFA Protocol](https://img.shields.io/badge/Benchmark-CAFA%20Zero--Leakage-success.svg)](#)
 [![Streamlit Ready](https://img.shields.io/badge/Streamlit-Interactive%20Platform-FF4B4B.svg?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23623576.svg)](https://doi.org/10.5281/zenodo.23623576)
 
 ---
 
@@ -71,27 +72,52 @@ Evaluated on the held-out, unseen test partition (**2,631 proteins**) across 16,
 
 ProteoPredict unifies three complementary biological feature spaces (2,250 input dimensions) feeding into a multi-branch trunk with decoupled sub-ontology prediction heads:
 
-```
-                            Primary Amino Acid Sequence
-                           /             |             \
-                          ↓              ↓              ↓
-                    Meta AI ESM-2   3-mer TF-IDF   Biophysical
-                      (320D PLM)       (1,500D)       Profile (430D)
-                          \              |              /
-                           \             |             /
-                            === Concat (2,250D) =======
-                                         ↓
-                       Dense (1,024D) + LayerNorm + Dropout(0.4)
-                                         ↓
-                        Dense (512D) + LayerNorm + Dropout(0.3)
-                           /             |             \
-                          ↓              ↓              ↓
-                     Molecular       Biological      Cellular
-                     Function         Process        Component
-                    Head (256D)     Head (256D)     Head (256D)
-                          ↓              ↓              ↓
-                     25 Classes      25 Classes      25 Classes
-                      τ* = 0.406      τ* = 0.369      τ* = 0.345
+```mermaid
+flowchart TD
+    SEQ["🧬 Primary Amino Acid Sequence"]
+    
+    subgraph TRIPLE ["Tri-Modal Feature Extraction (2,250D)"]
+        ESM["🧠 Meta AI ESM-2\n(320D Evolutionary PLM)"]
+        KMER["🔤 3-mer TF-IDF Motifs\n(1,500D Linear Signatures)"]
+        BIO["⚡ Biophysical Profile\n(430D Charge, Hydropathy, pI)"]
+    end
+
+    SEQ --> ESM
+    SEQ --> KMER
+    SEQ --> BIO
+
+    subgraph TRUNK ["Fusion Trunk (Deep Regularized)"]
+        CONCAT["🔗 Concatenation Layer (2,250D)"]
+        D1["Dense (1,024D) + LayerNorm + Dropout(0.4)"]
+        D2["Dense (512D) + LayerNorm + Dropout(0.3)"]
+    end
+
+    ESM --> CONCAT
+    KMER --> CONCAT
+    BIO --> CONCAT
+    CONCAT --> D1
+    D1 --> D2
+
+    subgraph OUTPUTS ["Decoupled Per-Ontology Heads"]
+        MF["🧪 Molecular Function (MF)\nHead (256D) → 25 Classes\nThreshold: τ* = 0.406"]
+        BP["🔄 Biological Process (BP)\nHead (256D) → 25 Classes\nThreshold: τ* = 0.369"]
+        CC["📍 Cellular Component (CC)\nHead (256D) → 25 Classes\nThreshold: τ* = 0.345"]
+    end
+
+    D2 --> MF
+    D2 --> BP
+    D2 --> CC
+
+    style SEQ fill:#1f2937,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style ESM fill:#1e3a8a,stroke:#3b82f6,color:#fff
+    style KMER fill:#7c2d12,stroke:#f97316,color:#fff
+    style BIO fill:#064e3b,stroke:#10b981,color:#fff
+    style CONCAT fill:#374151,stroke:#9ca3af,stroke-width:2px,color:#fff
+    style D1 fill:#1f2937,stroke:#6b7280,color:#fff
+    style D2 fill:#1f2937,stroke:#6b7280,color:#fff
+    style MF fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff
+    style BP fill:#0f172a,stroke:#4ade80,stroke-width:2px,color:#fff
+    style CC fill:#0f172a,stroke:#c084fc,stroke-width:2px,color:#fff
 ```
 
 * **Loss Function:** Multi-Label Focal Loss ($\gamma = 2.0, \alpha = 0.35$) penalizes easy background negatives and focuses gradients on rare, biologically specific GO terms.
@@ -120,8 +146,9 @@ cd ProteoPredict
 
 # Create and activate virtual environment
 python -m venv venv
-.\venv\Scripts\activate   # Windows
-# source venv/bin/activate # Linux / macOS
+.\venv\Scripts\Activate.ps1   # Windows PowerShell
+# or: .\venv\Scripts\activate.bat # Windows Command Prompt
+# or: source venv/bin/activate    # Linux / macOS
 
 # Install dependencies
 pip install -r requirements.txt
@@ -198,11 +225,12 @@ If you use ProteoPredict in your research, please cite our manuscript:
 
 ```bibtex
 @article{dehariya2026proteopredict,
-  title={ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction in the Homology Twilight Zone},
-  author={Dehariya, Nikhil and Collaborators},
-  journal={arXiv preprint / Under Review at Bioinformatics},
+  title={ProteoPredict: Tri-Modal Deep Network Fusion for High-Resolution Protein Function Prediction Across Low 3-mer Feature-Space Similarity Regimes},
+  author={Dehariya, Nikhil and Tanwar, Ravinder},
+  journal={BMC Bioinformatics (Under Review)},
   year={2026},
-  url={https://github.com/nikhildehariya/ProteoPredict}
+  doi={10.5281/zenodo.23623576},
+  url={https://github.com/nikhildehariya/proteopredict}
 }
 ```
 
